@@ -1,5 +1,5 @@
 
-//store.set('my_key', 'this is my test');
+store.set('a', 'this is my test');
 
 function load_data() {
     store = new Persist.Store('deepguide');
@@ -20,11 +20,11 @@ document.querySelector('#toggle').addEventListener('click', () => {
 
 //save changes on page exit
 window.onbeforeunload = function (e) {
-	//settings.mode = mode;
-	//store.set('settings', JSON.stringify(settings));
+	settings.mode = mode;
+	store.set('settings', JSON.stringify(settings));
 };
 
-//loadPersist();
+loadPersist();
 
 //Light/Dark Mode
 
