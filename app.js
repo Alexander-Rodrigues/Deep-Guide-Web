@@ -1,5 +1,3 @@
-
-
 function load_data() {
     store = new Persist.Store('deepguide');
     store.set('a', 'this is my test');
@@ -11,6 +9,7 @@ function load_data() {
 localStorage.setItem('cat', 'meow?');
 setCookie('cat', 'meow', 2);
 console.log('i hate storing shit');
+console.log(getCookie('cat'));
 
 
 //fix navbar bug
