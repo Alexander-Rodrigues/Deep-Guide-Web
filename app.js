@@ -1,8 +1,8 @@
 
-store.set('a', 'this is my test');
 
 function load_data() {
     store = new Persist.Store('deepguide');
+    store.set('a', 'this is my test');
 
     console.log(store.get('a'));
     
