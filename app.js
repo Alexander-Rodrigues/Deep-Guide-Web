@@ -19,11 +19,9 @@ document.querySelector('#toggle').addEventListener('click', () => {
 
 //save changes on page exit
 window.onbeforeunload = function (e) {
-	settings.mode = mode;
 	store.set('settings', JSON.stringify(settings));
 };
 
-loadPersist();
 
 //Light/Dark Mode
 
@@ -42,7 +40,7 @@ function applyMode(){
     styleProperties.forEach(e => {
         swap(e);
     })
-    if (mode == 'Light'){
+    if (settings.mode == 'Light'){
         moon.setAttribute('class', 'bi bi-moon');
     }
     else {
