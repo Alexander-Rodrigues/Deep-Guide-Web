@@ -7,6 +7,7 @@ window.onbeforeunload = function (e) {
 	settings.deviceType = document.querySelector('#option1').checked ? 'earbuds' : 'headphones'
 	settings.deviceName = document.querySelector('#devicename').value;
 	saveSettings();
+	saveStats();
 };
 
 //set volume

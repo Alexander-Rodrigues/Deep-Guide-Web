@@ -20,6 +20,7 @@ document.querySelector('#toggle').addEventListener('click', () => {
 //save changes on page exit
 window.onbeforeunload = function (e) {
 	saveSettings();
+    saveStats();
 };
 
 
@@ -36,6 +37,10 @@ applyMode();
 
 function saveSettings(){
     store.set('settings', JSON.stringify(settings));
+}
+
+function saveStats(){
+    store.set('stats', JSON.stringify(stats));
 }
 
 function applyMode(){
@@ -80,7 +85,22 @@ function loadPersist(){
             deviceName: '',
             mode:'Light'
         };
-        store.set('settings', JSON.stringify(settings));
+        saveSettings();
+    }
+
+    obj = store.get('stats');
+    if (obj != null) {
+        stats = JSON.parse(obj);
+    }
+    else {
+        stats = {
+            id: myHash(Math.random()),
+            totalRounds: 0,
+            totalCorrectX: 0,
+            totalCorrectY: 0,
+            totalCorrects: 0
+        };
+        saveStats();
     }
 }
 
