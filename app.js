@@ -8,6 +8,8 @@ function load_data() {
     
 }
 
+localStorage.setItem('cat', 'meow?');
+
 //fix navbar bug
 $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
