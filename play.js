@@ -4,6 +4,7 @@ soundPackPath = 'soundPacks/'
 soundPacks = [
 	'2_3_DU',
 	'1_1_FB',
+	'3_3_FB',
 ]
 sounds = [];
 
@@ -131,7 +132,6 @@ records = []
 function record(){
 	let e = timeElapsed();
 	let record = {
-		userID: stats.id,//maybe save it under id instead
 		packName: packName,
 		deviceType: settings.deviceType,
 		deviceName: settings.deviceName,
@@ -139,7 +139,6 @@ function record(){
 		correctX: correctX,
 		correctY: correctY,
 		correct: correctX && correctY,
-		totalRounds: stats.totalRounds,
 		totalCorrectX: stats.totalCorrectX,
 		totalCorrectY: stats.totalCorrectY,
 		elapsed: e
@@ -153,7 +152,10 @@ function record(){
 	saveStats();
 
 	console.log(record);
-	records.push(record);
+
+	pushBoth(stats.id, stats.totalRounds, record);
+
+	//records.push(record);
 }
 
 function sendRecord(){
@@ -174,4 +176,4 @@ function timeElapsed(){
 	return elapsed / 1000;
 }
 
-newGame('1_1_FB');
+newGame('3_3_FB');
