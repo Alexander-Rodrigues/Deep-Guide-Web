@@ -1,0 +1,192 @@
+:root{
+	--mainColorLight: #A25BE4;
+	--offColorLight: #9B50E2;
+	--backgroundLight: rgb(255, 255, 255);
+	--contrastLight:rgb(51, 51, 51);
+	
+	--mainColorDark: #A25BE4;
+	--offColorDark: #AF73E8;
+	--backgroundDark: var(--contrastLight);
+	--contrastDark: var(--backgroundLight);
+
+	--mainColor: var(--mainColorLight);
+	--offColor: var(--offColorLight);
+	--background: var(--backgroundLight);
+	--contrast: var(--contrastLight);
+}
+
+.navbar.navbar-dark{
+	background-color: var(--mainColor);
+	color: var(--mainColor);
+}
+
+.mybutton{
+	min-width: 25vh;
+	max-width: 100vw;
+	min-height: 25vh;
+	max-height: 100vw;
+	background-color: var(--mainColor);
+	border-color: var(--mainColor);
+	text-align: justify;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: 1.5%;
+	border-radius: 25%;
+}
+
+.mybutton:focus{
+  	box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0);
+  	outline: 0 none;
+}
+
+.mybutton:hover{
+	background-color: var(--offColor);
+	border-color: var(--offColor);
+	background-position-y: 45%;
+}
+
+.mybutton:active{
+	border-width: 0;
+}
+
+.navbar {
+	background-color: var(--mainColor);
+}
+
+.navbar-brand{
+	color: white
+}
+
+.nav-link{
+	color: white
+}
+
+.nav-link:hover{
+	color: white
+}
+
+.bi-moon, .bi-moon-fill{
+	font-size: 25px;
+}
+
+.navbar-toggler-icon{
+	color: white;
+}
+
+#play{
+	background-image: url('imgs/svgs/play.svg');
+	background-size: 60%;
+}
+
+#settings{
+	background-image: url('imgs/svgs/gear.svg');
+	background-size: 40%;
+}
+
+#help{
+	background-image: url('imgs/svgs/question.svg');
+	background-size: 60%;
+}
+
+.container{
+	max-width: 960px;
+}
+
+#rest{
+	display: flex;
+	flex-direction: row;
+	flex-grow:1;
+	align-items: center;
+}
+
+body{
+	background-color: var(--background);
+	color: var(--contrast);
+}
+
+#daddy{
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+}
+
+#middle{
+	flex: 1;
+}
+
+#normal{
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	flex-flow: column;
+	align-items: flex-start;
+}
+
+.feef{
+	margin-top: 10px;
+	margin-bottom: 5px;
+	width: 100%;
+	margin-right: auto;
+	text-align: left;
+}
+
+.btn-secondary.focus{
+	box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0);
+	outline: 0 none;
+}
+
+.active{
+	background-color: var(--mainColor);
+}
+
+
+
+*{
+	border-style: solid;
+	border-color: green;
+	border-width: 0px;
+}
+
+.vert{
+	margin-top: 100px;
+	display: flex;
+	flex-direction: column;
+}
+
+.hor{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	flex: 1;
+	justify-content: center;
+}
+
+
+.kekers{
+	height:100px;
+	width:100px;
+	background-color: var(--mainColor);
+	border-color: var(--mainColor);
+	border-radius: 12%;
+	flex-shrink: 0;
+	margin: 1px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: center;
+}
+
+.kekers:focus{
+  	box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0);
+  	outline: 0 none;
+}
+
+.kekers:hover{
+	background-color: var(--offColor);
+	border-color: var(--offColor);
+	background-position-y: 45%;
+}
+
+.kekers:active{
+	border-width: 0;
+}
