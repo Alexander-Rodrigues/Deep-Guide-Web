@@ -8,10 +8,8 @@ soundPacks = [
 sounds = [];
 
 function open(val = rad){
-	console.log(val);
 	buttons.forEach(e => {
 		e.style['border-radius'] = val;
-		console.log(e.style['border-radius']);
 	})
 }
 
@@ -58,16 +56,22 @@ var packName;
 function newGame(p){
 	packName = p;
 	setMargin2(3);
-	round = 5;
+	round = 4;
 	loadSounds(p);
 	
 	play(Math.floor(Math.random() * 9));
-	
+	startTime();
 }
 
 function endGame(){
 	stop();
 	setMargin2(0);
+	buttons.forEach(b => {
+		b.innerHTML = '';
+	})
+	buttons[6].innerHTML = 'Play Again';
+	buttons[7].innerHTML = 'Settings';
+	buttons[8].innerHTML = 'Help';
 }
 
 var playing = 0;
@@ -83,21 +87,33 @@ function stop(){
 	sounds[playing].currentTime = 0;
 }
 
+
+
 var round;
 var correctX;
 var correctY;
 function pressButton(pressed){	
+	//game already ended
 	if (round < 0){
-		console.log('ended');
-		if (pressed == 4) {
+		
+		if (pressed == 6) {
 			location.reload();
 		}
 	}
+	//game is going
 	else {
-		play(Math.floor(Math.random() * 9));
 		round--;
+		let b = pressed;
+		let p = playing;
+
+		correctX = Math.floor(b/3) === Math.floor(p/3);
+		correctY = b%3 === p%3
+
+		record();
+
+		play(Math.floor(Math.random() * 9));
+		//game just ended
 		if (round < 0){
-			console.log('end-game');
 			endGame();
 		}
 	}
@@ -113,17 +129,49 @@ for(let i = 0; i < 9; i++){
 records = []
 
 function record(){
+	let e = timeElapsed();
 	let record = {
-		name: packName,
-		round: round,
-		totalRounds: stats.totalRounds,
+		userID: stats.id,//maybe save it under id instead
+		packName: packName,
 		deviceType: settings.deviceType,
 		deviceName: settings.deviceName,
-		correctX: correctX,//check
-		correctY: correctY,//check
+		round: 4 - round,
+		correctX: correctX,
+		correctY: correctY,
 		correct: correctX && correctY,
-		elapsed: 1.2//timer
+		totalRounds: stats.totalRounds,
+		totalCorrectX: stats.totalCorrectX,
+		totalCorrectY: stats.totalCorrectY,
+		elapsed: e
 	}
+
+	stats.totalRounds++;
+	if (correctX) stats.totalCorrectX++;
+	if (correctY) stats.totalCorrectY++;
+	if (correctX && correctY) stats.totalCorrects++;
+
+	saveStats();
+
+	console.log(record);
+	records.push(record);
+}
+
+function sendRecord(){
+	//store in firebase
+	console.log(records);
+}
+
+var start;
+var cur;
+function startTime(){
+	start = new Date();
+}
+
+function timeElapsed(){
+	cur = new Date();
+	let elapsed = cur - start;
+	start = cur;
+	return elapsed / 1000;
 }
 
 newGame('1_1_FB');
