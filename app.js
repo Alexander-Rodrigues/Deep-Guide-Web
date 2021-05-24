@@ -9,6 +9,9 @@ function load_data() {
 }
 
 localStorage.setItem('cat', 'meow?');
+setCookie('cat', 'meow', 2);
+console.log('i hate storing shit');
+
 
 //fix navbar bug
 $(document).ready(function() {
