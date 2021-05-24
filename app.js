@@ -19,7 +19,7 @@ document.querySelector('#toggle').addEventListener('click', () => {
 
 //save changes on page exit
 window.onbeforeunload = function (e) {
-	store.set('settings', JSON.stringify(settings));
+	saveSettings();
 };
 
 
@@ -32,9 +32,11 @@ var styleProperties = [
     '--background'
 ]
 var moon = document.querySelector('#toggle').firstElementChild;
-//applyMode();
+applyMode();
 
-
+function saveSettings(){
+    store.set('settings', JSON.stringify(settings));
+}
 
 function applyMode(){
     styleProperties.forEach(e => {
@@ -46,6 +48,7 @@ function applyMode(){
     else {
         moon.setAttribute('class', 'bi bi-moon-fill');
     }
+    saveSettings();
 }
 
 //Swaps mode from Light to Dark and vice versa
