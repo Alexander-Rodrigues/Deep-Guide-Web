@@ -176,4 +176,4 @@ function timeElapsed(){
 	return elapsed / 1000;
 }
 
-newGame('3_3_FB');
+newGame('3_3_DU');
