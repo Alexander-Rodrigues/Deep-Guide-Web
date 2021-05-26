@@ -1,4 +1,6 @@
 buttons = document.querySelectorAll('.kekers')
+hearts = document.querySelectorAll('.myheart')
+lives = 3;
 rad = '12%';
 soundPackPath = 'soundPacks/'
 soundPacks = [
@@ -144,6 +146,12 @@ function record(){
 		elapsed: e
 	}
 
+	if(!record.correct) //Change later to get lives from firebase instead
+	{
+		lives -= 1;
+		removeHeart(lives);
+	}
+
 	stats.totalRounds++;
 	if (correctX) stats.totalCorrectX++;
 	if (correctY) stats.totalCorrectY++;
@@ -156,6 +164,12 @@ function record(){
 	pushBoth(stats.id, stats.totalRounds, record);
 
 	//records.push(record);
+}
+
+function removeHeart(heart)
+{
+	if(heart>=0 && heart<hearts.length)
+	hearts[heart].style['background-image'] = "url('imgs/svgs/heart1.svg')";
 }
 
 function sendRecord(){
