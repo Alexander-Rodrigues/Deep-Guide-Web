@@ -66,10 +66,12 @@ function newGame(p){
 
 function endGame(){
 	stop();
-	setMargin2(0);
+	setMargin2(1);
+	//coolMargin();
 	buttons.forEach(b => {
 		b.innerHTML = '';
 	})
+	buttons[1].style.visibility = "hidden";
 	buttons[6].innerHTML = 'Play Again';
 	buttons[7].innerHTML = 'Settings';
 	buttons[8].innerHTML = 'Help';
@@ -176,4 +178,5 @@ function timeElapsed(){
 	return elapsed / 1000;
 }
 
-newGame('3_3_FB');
+newGame('3_3_DU');
+

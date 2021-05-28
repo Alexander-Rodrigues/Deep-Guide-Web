@@ -148,8 +148,11 @@ body{
 	border-width: 0px;
 }
 
-.vert{
+#play-vert{
 	margin-top: 100px;
+}
+
+.vert{
 	display: flex;
 	flex-direction: column;
 }
@@ -191,4 +194,24 @@ body{
 
 .kekers:active{
 	border-width: 0;
+}
+
+
+#center{
+	margin-top: 50px;
+	display: flex;
+	justify-content: left;
+	align-items: flex-start;
+	flex-direction: column;
+	text-align: left;
+}
+
+.ind{
+	margin-left: 15px;
+}
+
+#sigh{
+	display: flex;
+	justify-content: center;
+	margin: 20px;
 }

@@ -38,15 +38,3 @@ function pushBoth(name, num, obj){
 	obj.totalRounds = num;
 	firebase.database().ref('unsorted/').push(obj);
 }
-
-var test = {
-	a: 1,
-	b: 2,
-	c: 3
-}
-
-console.log(test);
-
-test.d = 4;
-
-console.log(test);
