@@ -8,7 +8,6 @@ var firebaseConfig = {
 	appId: "1:125247287280:web:916789f528a543de0d3735"
 };
 
-console.log(firebase);
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -38,3 +37,26 @@ function pushBoth(name, num, obj){
 	obj.totalRounds = num;
 	firebase.database().ref('unsorted/').push(obj);
 }
+
+function incMetric(round){
+	//firebase.database().ref(`metric/${rounds}/${num}/`).set(obj);
+	const updates = {};
+	updates[`metrics/${round}/`] = firebase.database.ServerValue.increment(1);
+	firebase.database().ref().update(updates);
+}
+
+function getMetrics(func){
+	//deal with promise
+	firebase.database().ref('metrics').get().then((snapshot) => {
+		if (snapshot.exists()) {
+			func(snapshot.val())
+		} else {
+			console.log("No data available");
+			return 'else';
+		}
+		}).catch((error) => {
+		console.error(error);
+		return 'error';
+	});
+}
+

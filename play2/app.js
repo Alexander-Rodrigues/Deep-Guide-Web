@@ -13,6 +13,9 @@ var slid = document.querySelector('#slid');
 var startBt = document.querySelector('#start-button');
 var retryBt = document.querySelector('#retry-button');
 
+//chart
+var chart = document.querySelector('.chart-js').getContext('2d');
+
 slid.addEventListener('change', () => {
 	e = [start, mid, end][slid.value]
 	swapFocus4(e);
@@ -69,7 +72,6 @@ function swapFocus4(element){
 
 //Game Itself
 
-//choosen b4
 var soundPack;
 var info = {
 	distance: -1,
@@ -84,6 +86,9 @@ var state = 'start'
 
 var buttons = document.querySelectorAll('.sound-button');
 var heart = document.querySelectorAll('.heart');
+
+//Text elements that display rounds
+var rounds = document.querySelectorAll('.round');
 var audios = []
 
 var soundPackRoot = 'soundPacks/'
@@ -124,13 +129,15 @@ function init(packName){
 		heart[i].innerHTML = '<i class="bi bi-suit-heart-fill">';
 	}
 
-	//set info from folder name
+	//✓set info from folder name
 	let reg = /(\d+)_(\d+)_(\w{2})_(.*)/;
 	let cap = packName.match(reg);
 	info.distance = cap[1];
 	info.radius = cap[2];
 	info.axis = cap[3];
 	info.hrtf = cap[4];
+
+	rounds[0].innerHTML = 'Round 1';
 
 
 	//setGraphics, button text and/or svg background
@@ -141,6 +148,7 @@ function init(packName){
 	startTime();
 }
 
+//Gets called on button press
 function action(btn){
 	if (gameState != 'midGame') return null;
 	//✓check if button was right
@@ -163,6 +171,7 @@ function action(btn){
 		if (hearts <= 0) {
 			gameState = 'finished';
 			stop();
+			incMetric(round);
 			setTimeout(() => {
 				swapFocus4(end);
 			}, 300);
@@ -172,22 +181,14 @@ function action(btn){
 			play(Math.floor(Math.random() * 9));
 		}
 	}
-	//✓right
-		//next round
-		//rounds +1
-	//✓wrong
-		//less heart
-		//check if hearts are 0
-			//yes
-				//change game gameState to finished
-				//go to endcard
-			//no
-				//rounds +1
+	rounds.forEach(e => {
+		e.innerHTML = 'Round ' + round;
+	})
 				
 }
 
+//Changes hearts to empty visually and shakes them
 function removeHeart(h){
-	//animation
 	heart[h].innerHTML = '<i class="bi bi-suit-heart">';
 	let i = 0;
 	let id = setInterval(() => {
@@ -198,6 +199,7 @@ function removeHeart(h){
 	}, 1)
 }
 
+//Records and sends stats, updates stats like total rounds,
 function record(btn, correctX, correctY){
 
 	let e = timeElapsed();
@@ -237,6 +239,7 @@ function record(btn, correctX, correctY){
 	pushBoth(stats.id, stats.totalRounds, record);
 }
 
+//For measuring time between rounds
 var tstart;
 var cur;
 function startTime(){
@@ -250,22 +253,50 @@ function timeElapsed(){
 	return elapsed / 1000;
 }
 
-//dummy setting/stats
-var settings = {
-	deviceType: 'a',
-	deviceName: 'fe'
+//Draw graph, get's called by getMetric
+function parseMetrics(arr) {
+	arr = arr.slice(3,16);
+	console.log(arr);
+    var lab = [3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15];
+	
+
+
+	const labels = lab;
+	const data = {
+		labels: labels,
+		datasets: [{
+			backgroundColor: '#9B50E2',
+			borderColor: '#A25BE4',
+			data: arr,
+			tension: 0.3,
+		}]
+	};
+
+	const config = {
+		type: 'line',
+		data,
+		options: {
+			plugins: {
+				legend: {
+					display: false
+				},
+				tooltip: {
+					enabled: false
+				}
+			},
+			scales: {
+				y: {
+					display:false
+				}
+			},
+	   }
+	};
+
+	var myChart = new Chart(
+		chart,
+		config
+	);
 }
 
-var stats = {
-	totalCorrectX: 420,
-	totalCorrectY: 420,
-	totalCorrects: 420
-}
-
-function saveStats(){
-
-}
-
-function pushBoth(a,b,c){
-
-}
+//Gets the values and calls parseMetrics on them
+getMetrics(parseMetrics);

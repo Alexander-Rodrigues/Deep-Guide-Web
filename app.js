@@ -1,13 +1,8 @@
-
 var store = new Persist.Store('deepguide');
 loadPersist();
 
-function load_data() {
-    
-}
-
-
-//fix navbar bug
+//!!temp fix
+/* //fix navbar bug
 $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
 });
@@ -15,7 +10,7 @@ $(document).ready(function() {
 //moon button swap modes
 document.querySelector('#toggle').addEventListener('click', () => {
     toggleMode();
-})
+}) */
 
 //save changes on page exit
 window.onbeforeunload = function (e) {
@@ -32,7 +27,8 @@ var styleProperties = [
     '--contrast',
     '--background'
 ]
-var moon = document.querySelector('#toggle').firstElementChild;
+//!!temp fix
+//var moon = document.querySelector('#toggle').firstElementChild;
 applyMode();
 
 function saveSettings(){
@@ -43,15 +39,16 @@ function saveStats(){
     store.set('stats', JSON.stringify(stats));
 }
 
+//!!temp fix
 function applyMode(){
     styleProperties.forEach(e => {
         swap(e);
     })
     if (settings.mode == 'Light'){
-        moon.setAttribute('class', 'bi bi-moon');
+        //moon.setAttribute('class', 'bi bi-moon');
     }
     else {
-        moon.setAttribute('class', 'bi bi-moon-fill');
+        //moon.setAttribute('class', 'bi bi-moon-fill');
     }
     saveSettings();
 }
