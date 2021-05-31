@@ -36,15 +36,16 @@ button:hover, button:focus, button:active{
 	margin-left: calc(50% - 175px);
 	align-self: center;
 	max-width: 350px;
+	height: 350px;
 	display: flex;                       /* establish flex container */
 	flex-wrap: wrap;                     /* enable flex items to wrap */
 	justify-content: space-around;
 }
 
 .sound-button {
-	flex: 0 0 32%;    
+	flex: 0 0 32%;
+	height: 32%;
 	margin-bottom: 5px;
-	aspect-ratio: 1;
 }
 
 .sound-button:nth-child(3n) {
