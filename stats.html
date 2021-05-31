@@ -60,33 +60,20 @@
 		</nav>
 		
 		<div class="container" id="normal">
-			<h1>Settings</h1>
-			<div class="feef">
-				<h3>Volume</h3>
-				<input type="range" class="form-control-range" id="volume" min="0" max="1" step="0.1" value="1">
+			<h1>Stats</h1>
+			<div class="container stats" >
+				<h2>Accuracy</h2>
+				<h4 id="hor">Horizontal: ???</h4>
+				<h4 id="vert">Vertical: ???</h4>
+				
 			</div>
-
-			<div class="feef">
-				<h3>Listening On</h3>
-				<div class="btn-group btn-group-toggle" data-toggle="buttons">
-					<label class="btn btn-secondary active btn-radio">
-						<input type="radio" name="options" id="option1" autocomplete="off">
-							<i class="bi bi-earbuds"></i>
-							Earbuds
-						</input>
-					</label>
-					<label class="btn btn-secondary btn-radio" id="radio">
-						<input type="radio" name="options" id="option2" autocomplete="off" checked>
-							<i class="bi bi-headphones"></i>
-							HeadPhones
-					  </input>
-				  </label>
-				  </div>
+			<div class="container stats" >
+				<h2 id="highscore">Top Score: nth Round</h2>
+				
 			</div>
-
-			<div class="feef">
-				<h3>Listening Device Name</h3>
-				<input type="text" class="form-control" id="devicename" placeholder="optional">
+			<div class="container stats" >
+				<h2>More stats idk maybe a chart</h2>
+				
 			</div>
 
 			
@@ -97,7 +84,7 @@
 
 	<script src="cookies.js" charset="utf-8"></script>
 	<script src="app.js" charset="utf-8"></script>
-	<script src="settings.js" charset="utf-8"></script>
+	<script src="stats.js" charset="utf-8"></script>
 	<link rel="stylesheet" href="style.css">
 </body>
 </html>

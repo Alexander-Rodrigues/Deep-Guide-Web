@@ -5,6 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 
+	<script type=“text/javascript”>
+
+		window.onload= loaded;
+		function loaded()
+		{
+		alert(‘WELCOME MESSAGE’);
+		}
+		</script>
+
 	<!-- Firebase API -->
 	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
@@ -53,7 +62,6 @@
 	<div id="end" class="screen">
 		<h1 class="round">Round n</h1>
 		<h1><i class="bi bi-volume-up"></i></h1>
-		<button>Submite Score</button>
 		<button id="retry-button">Try Again</button>
 	</div>
 	<div style="display: none;">

@@ -8,6 +8,7 @@ var end = document.querySelector('#end');
 //for testing
 var bt = document.querySelector('#bt');
 var slid = document.querySelector('#slid');
+var debug = false;
 
 //Start Screen
 var startBt = document.querySelector('#start-button');
@@ -29,7 +30,7 @@ bt.addEventListener('click', () => {
 //Main Screen ---> Game
 startBt.addEventListener('click', () => {
 	swapFocus4(mid);
-	init('3_3_DU_irc_1037');
+	init('2_8_DU_irc_1037');
 })
 
 //End Screen ---> Main Screen
@@ -123,6 +124,7 @@ function init(packName){
 		let path = soundPackRoot + packName + '/' + i + '.wav'
 		audios.push(new Audio(path))
 		audios[i].loop = true;
+		//volume slider
 	}
 
 	for(let i = 0; i < 3; i++){
@@ -143,6 +145,10 @@ function init(packName){
 	//setGraphics, button text and/or svg background
 	//setGraphics()
 
+	//set graph
+	//fix second graph not apearing
+	if (!debug) getMetrics(soundPack, parseMetrics);
+
 	play(Math.floor(Math.random() * 9));
 
 	startTime();
@@ -161,30 +167,61 @@ function action(btn){
 	//✓record data
 	record(btn, correctX, correctY);
 
+
+	//right button
 	if (correctX && correctY){
 		round++;
 		play(Math.floor(Math.random() * 9));
+		rightButtonAnim(btn);
 	}
 	else {
 		hearts--;
 		removeHeart(hearts);
+		wrongButtonAnim(btn);
+		//no hearts left
 		if (hearts <= 0) {
 			gameState = 'finished';
 			stop();
-			incMetric(round);
+			incMetric(soundPack, round);
+			if (stats.bestRound < round) stats.bestRound = round;
+			saveStats();
 			setTimeout(() => {
 				swapFocus4(end);
 			}, 300);
 		}
 		else {
 			round++;
-			play(Math.floor(Math.random() * 9));
 		}
 	}
 	rounds.forEach(e => {
 		e.innerHTML = 'Round ' + round;
 	})
 				
+}
+
+rightSound = new Audio('right.wav');
+rightSound.volume = 0.1;
+function rightButtonAnim(b){
+	rightSound.play();
+	rightSound.currentTime = 0;
+}
+
+wrongSound = new Audio('wrong.wav');
+wrongSound.volume = 0.1;
+function wrongButtonAnim(b){
+	wrongSound.play();
+	let button = buttons[b];
+	let i = 0;
+	let id = setInterval(() => {
+		i += Math.PI / 2;
+		position = Math.sin(i) * 2 + 2;
+		button.style.transform = `translate(0px, ${position}px)`;
+		if (i > 2*Math.PI) {
+			button.style.transform = '';
+			clearInterval(id);
+		}
+	}, 3)
+	wrongSound.currentTime = 0;
 }
 
 //Changes hearts to empty visually and shakes them
@@ -257,7 +294,7 @@ function timeElapsed(){
 function parseMetrics(arr) {
 	arr = arr.slice(3,16);
 	console.log(arr);
-    var lab = [3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15];
+    var lab = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 	
 
 
@@ -299,4 +336,4 @@ function parseMetrics(arr) {
 }
 
 //Gets the values and calls parseMetrics on them
-getMetrics(parseMetrics);
+if (!debug) getMetrics('all', parseMetrics);

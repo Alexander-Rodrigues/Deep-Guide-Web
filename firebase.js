@@ -11,26 +11,17 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-//sorted 
-/* firebase.database().ref('sorted/VOWKF/1/').set(record)
-firebase.database().ref('sorted/VOWKF/2/').set(record)
-firebase.database().ref('sorted/VOWKF/3/').set(record)
-firebase.database().ref('sorted/VOWKF/4/').set(record) */
-
-//unsorted
-/* firebase.database().ref('unsorted').push(record)
-firebase.database().ref('unsorted').push(record)
-firebase.database().ref('unsorted').push(record)
-firebase.database().ref('unsorted').push(record) */
-
+//Adds the rounds by name and round
 function pushSortedRecord(name, num, obj){
 	firebase.database().ref(`sorted/${name}/${num}/`).set(obj)
 }
 
+//Adds the round to the unsorted pile. Using push gives it a hash already
 function pushUnsorted(obj){
 	firebase.database().ref('unsorted').push(record)
 }
 
+//Calls both by using the parameters for the sorted one and then adding them to the object before pushing to unsorted
 function pushBoth(name, num, obj){
 	firebase.database().ref(`sorted/${name}/${num}/`).set(obj);
 	obj.name = name;
@@ -38,20 +29,24 @@ function pushBoth(name, num, obj){
 	firebase.database().ref('unsorted/').push(obj);
 }
 
-function incMetric(round){
+//Increases both the packs metrics and the overall metrics.
+//Metrics record how many people go to which round
+function incMetric(pack, round){
 	//firebase.database().ref(`metric/${rounds}/${num}/`).set(obj);
 	const updates = {};
-	updates[`metrics/${round}/`] = firebase.database.ServerValue.increment(1);
+	updates[`metrics/${pack}/${round}/`] = firebase.database.ServerValue.increment(1);
+	updates[`metrics/all/${round}/`] = firebase.database.ServerValue.increment(1);
 	firebase.database().ref().update(updates);
 }
 
-function getMetrics(func){
-	//deal with promise
-	firebase.database().ref('metrics').get().then((snapshot) => {
+//Retrieves an array of metrics, and applies func to them.
+function getMetrics(name, func){
+	console.log('hi');
+	firebase.database().ref(`metrics/${name}`).get().then((snapshot) => {
 		if (snapshot.exists()) {
 			func(snapshot.val())
 		} else {
-			console.log("No data available");
+			console.log("No pack with name : " + name);
 			return 'else';
 		}
 		}).catch((error) => {
@@ -60,3 +55,11 @@ function getMetrics(func){
 	});
 }
 
+//To prevent veryfying if each soundpack has a metrics, this sets up 15 elements with 0 values.
+//If this isnt run then the graph will look very weird/maybe break
+function addMetrics(name, upperExc=16){
+	for(let i = 3; i < 16; i++){
+		firebase.database().ref(`metrics/${name}/${i}/`).set(0);
+		console.log(`metrics/${name}/${i}/`);
+	}
+}

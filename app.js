@@ -90,12 +90,14 @@ function loadPersist(){
         stats = JSON.parse(obj);
     }
     else {
+        console.log('new stats');
         stats = {
             id: myHash(Math.random()),
             totalRounds: 0,
             totalCorrectX: 0,
             totalCorrectY: 0,
-            totalCorrects: 0
+            totalCorrects: 0,
+            bestRound: 0
         };
         saveStats();
     }

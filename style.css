@@ -161,12 +161,10 @@ body{
 	background-color: var(--mainColor);
 }
 
-
-
 *{
-	border-style: solid;
-	border-color: green;
-	border-width: 0px;
+	outline-style: solid;
+	outline-color: green;
+	outline-width: 0px;
 }
 
 #play-vert{
@@ -235,4 +233,16 @@ body{
 	display: flex;
 	justify-content: center;
 	margin: 20px;
+}
+
+.stats{
+	margin-top: 30px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	flex-flow: column;
+	align-items: flex-start;
+	border-bottom: lightgray;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
 }

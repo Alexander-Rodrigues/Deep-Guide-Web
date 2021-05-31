@@ -51,6 +51,10 @@ body{
 	align-content: center;
 }
 
+.sound-button{
+	display: flex;
+}
+
 .heart-box{
 	display: flex;
 	flex-direction: row;
