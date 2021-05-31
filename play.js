@@ -56,6 +56,7 @@ function swapFocus4(element){
 	}, 5);
 }
 
+
 //Game Itself
 
 var soundPack;
@@ -80,10 +81,10 @@ var audios = []
 var soundPackRoot = 'soundPacks/'
 
 rightSound = new Audio('sounds/right.wav');
-rightSound.volume = 0.1;
+rightSound.volume = settings.volume;
 
 wrongSound = new Audio('sounds/wrong.wav');
-wrongSound.volume = 0.1;
+wrongSound.volume = settings.volume;
 
 buttons.forEach(e => {
 	e.addEventListener('click', () => {
@@ -115,7 +116,7 @@ function init(packName){
 		let path = soundPackRoot + packName + '/' + i + '.wav'
 		audios.push(new Audio(path))
 		audios[i].loop = true;
-		//volume slider
+		audios[i].volume = settings.volume;
 	}
 
 	for(let i = 0; i < 3; i++){
