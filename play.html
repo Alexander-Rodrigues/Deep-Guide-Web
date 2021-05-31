@@ -8,7 +8,10 @@
 	<!-- Firebase API -->
 	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
-	<script src="firebase.js" charset="utf-8"></script>
+	<script src="firebase.js"></script>
+
+	<!-- Chart Js API -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.0/dist/chart.min.js"></script>
 
 	<!-- jQuery & Popper.js -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -23,10 +26,9 @@
 
 	<!-- PersistJs -->
 	<script type='text/javascript' src='persist-js-0.3.1\persist-min.js'></script>
-
-
+	
 </head>
-<body class="text-center" class="d-flex align-items-center" id="header-main" onload='load_data();'>
+<body class="text-center" class="d-flex align-items-center" id="header-main">
 	<div id="daddy">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<div class="container container-wide position-relative">
@@ -52,7 +54,7 @@
 							Help
 						</a>
 					</li>
-<li class="nav-item active">
+					<li class="nav-item active">
 						<a class="nav-link" href="stats.html">
 							Stats
 						</a>
@@ -65,38 +67,51 @@
 			</div>
 		</nav>
 		
-		<div class="container vert">
-			<div class="container hor myhearts">
-				<div class="myheart" id="hrt0"></div>
-				<div class="myheart" id="hrt1"></div>
-				<div class="myheart" id="hrt2"></div>
+		<div id='screen-daddy' class="container">
+			<div id="start" class="screen">
+				<h1>Game Name</h1>
+				<h1><i class="bi bi-volume-up"></i></h1>
+				<h3>Click the direction from where you hear the sound from</h3>
+				<button id="start-button">Start</button>
 			</div>
-		</div>
+			<div id="mid" class="screen">
+				<h1 class="round">Round n</h1>
 		
-		<div class="container vert" id="play-vert">
-			<div class="container hor">
-				<button class="btn kekers" id="bt0">Up Left</button>
-				<button class="btn kekers" id="bt1">Up</button>
-				<button class="btn kekers" id="bt2">Up Right</button>
+				<div class="button-box">
+					<!-- Remove value if not needed -->
+					<button class="sound-button" value="0">0</button>
+					<button class="sound-button" value="1">1</button>
+					<button class="sound-button" value="2">2</button>
+					<button class="sound-button" value="3">3</button>
+					<button class="sound-button" value="4">4</button>
+					<button class="sound-button" value="5">5</button>
+					<button class="sound-button" value="6">6</button>
+					<button class="sound-button" value="7">7</button>
+					<button class="sound-button" value="8">8</button>
+				</div>
+				<div class="heart-box">
+					<span class="heart"><i class="bi bi-suit-heart-fill"></i></span>
+					<span class="heart"><i class="bi bi-suit-heart-fill"></i></span>
+					<span class="heart"><i class="bi bi-suit-heart-fill"></i></span>
+				</div>
 			</div>
-			<div class="container hor">
-				<button class="btn kekers" id="bt3">Left</button>
-				<button class="btn kekers" id="bt4">Mid</button>
-				<button class="btn kekers" id="bt5">Right</button>
-			</div>
-			<div class="container hor">
-				<button class="btn kekers" id="bt6">Down Left</button>
-				<button class="btn kekers" id="bt7">Down</button>
-				<button class="btn kekers" id="bt8">Down Right</button>
+			<div id="end" class="screen">
+				<h1 class="round">Round n</h1>
+				<h1><i class="bi bi-volume-up"></i></h1>
+				<button id="retry-button">Try Again</button>
 			</div>
 		</div>
-	</div>
+		<div>
+			<canvas class="chart-js" ></canvas>
+		</div>
 	</div>
 </body>
 
-	<script src="cookies.js" charset="utf-8"></script>
+
 	<script src="app.js" charset="utf-8"></script>
 	<script src="play.js" charset="utf-8"></script>
+	
+	<link rel="stylesheet" href="play.css">
 	<link rel="stylesheet" href="style.css">
 </body>
 </html>

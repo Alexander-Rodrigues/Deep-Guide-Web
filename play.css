@@ -1,0 +1,55 @@
+@import url(style.css);
+
+.screen{
+	height: 35rem;
+}
+
+.heart-box{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.heart{
+	margin: 5px;
+	color: red;
+	font-size: 3rem;
+}
+
+
+#mid{
+	display: flex;
+	align-content: center;
+}
+
+button{
+	border-style: none;
+	border-radius: 8%;
+	background-color: var(--mainColor);
+}
+
+button:hover, button:focus, button:active{
+	background-color: var(--offColor);
+}
+
+.button-box {
+	margin-left: calc(50% - 175px);
+	align-self: center;
+	max-width: 350px;
+	display: flex;                       /* establish flex container */
+	flex-wrap: wrap;                     /* enable flex items to wrap */
+	justify-content: space-around;
+}
+
+.sound-button {
+	flex: 0 0 32%;    
+	margin-bottom: 5px;
+	aspect-ratio: 1;
+}
+
+.sound-button:nth-child(3n) {
+}
+
+canvas{
+	outline-color: orange;
+}

@@ -164,7 +164,7 @@ body{
 *{
 	outline-style: solid;
 	outline-color: green;
-	outline-width: 0px;
+	outline-width: 1px;
 }
 
 #play-vert{
