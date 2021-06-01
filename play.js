@@ -68,8 +68,10 @@ var info = {
 }
 
 var hearts = 3;
-var round = 1;
 var state = 'start'
+
+var gameRound = 1;
+var trueRound = 1;
 
 var buttons = document.querySelectorAll('.sound-button');
 var heart = document.querySelectorAll('.heart');
@@ -109,7 +111,8 @@ function stop(){
 
 function init(packName){
 	hearts = 3;
-	round = 1;
+	gameRound = 1;
+	trueRound = 1;
 	gameState = 'midGame';
 	audios = [];
 	soundPack = packName;
@@ -167,12 +170,14 @@ function action(btn){
 	correctY = b%3 === p%3;
 
 	//✓record data
+	console.log();
 	record(btn, correctX, correctY);
 
 
 	//right button
 	if (correctX && correctY){
-		round++;
+		gameRound++;
+		trueRound++;
 		play(Math.floor(Math.random() * 9));
 		rightButtonAnim(btn);
 	}
@@ -184,21 +189,24 @@ function action(btn){
 		if (hearts <= 0) {
 			gameState = 'finished';
 			stop();
-			incMetric(soundPack, round);
-			if (stats.bestRound < round) stats.bestRound = round;
+			incMetric(soundPack, gameRound);
+			if (stats.bestRound < gameRound) stats.bestRound = gameRound;
 			saveStats();
 			setTimeout(() => {
 				swapFocus4(end);
 			}, 300);
 		}
 		else {
-			round++;
+			trueRound++;
 		}
 	}
+
+	//update the round h1 texts
 	rounds.forEach(e => {
-		e.innerHTML = 'Round ' + round;
+		e.innerHTML = 'Round ' + gameRound;
 	})
-				
+	
+	console.log('True: ' + trueRound + ' Game: ' + gameRound);
 }
 
 function rightButtonAnim(b){
@@ -255,7 +263,9 @@ function record(btn, correctX, correctY){
 		deviceType: settings.deviceType,
 		deviceName: settings.deviceName,
 
-		round: round,
+		trueRound: trueRound,
+		gameRound: gameRound,
+
 		buttonPressed: btn,
 		soundPlaying: playing,
 
@@ -291,9 +301,9 @@ function timeElapsed(){
 
 //Draw graph, get's called by getMetric
 function parseMetrics(arr) {
-	arr = arr.slice(3,16);
+	arr = arr.slice(1,21);
 	console.log(arr);
-    var lab = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    var lab = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	
 
 

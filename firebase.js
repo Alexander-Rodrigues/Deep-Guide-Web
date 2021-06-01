@@ -41,7 +41,6 @@ function incMetric(pack, round){
 
 //Retrieves an array of metrics, and applies func to them.
 function getMetrics(name, func){
-	console.log('hi');
 	firebase.database().ref(`metrics/${name}`).get().then((snapshot) => {
 		if (snapshot.exists()) {
 			func(snapshot.val())
@@ -57,8 +56,8 @@ function getMetrics(name, func){
 
 //To prevent veryfying if each soundpack has a metrics, this sets up 15 elements with 0 values.
 //If this isnt run then the graph will look very weird/maybe break
-function addMetrics(name, upperExc=16){
-	for(let i = 3; i < 16; i++){
+function addMetrics(name, upperExc=21){
+	for(let i = 1; i < upperExc; i++){
 		firebase.database().ref(`metrics/${name}/${i}/`).set(0);
 		console.log(`metrics/${name}/${i}/`);
 	}
