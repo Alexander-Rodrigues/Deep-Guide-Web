@@ -61,19 +61,21 @@
 		</nav>
 		
 		<div class="container" id="center">
-			<h1>Playing</h1>
-			<h3>To start the game either press play from the top bar or the <i class="bi bi-play-fill"></i> button in the home page.</h3>
-			<h3>There are 9 buttons, each of them represents a direction from where sound's coming from.</h3>
-			<h1>Game Modes</h1>
-			<h3>There are 2 game modes</h3>
-
+			<div class="container stats">
+				<h1>Playing</h1>
+				<h3>There are 9 buttons, each of them represents a direction from where sound's coming from. </h3>
+				<h3>If you get it wrong, the sound stays in place. If you get it right, it'll go to another random spot.</h3>
+			</div>
+			<div class="container stats">
+				<h1>Game Modes</h1>
+				<h3>For now there's only one game mode. If you get it wrong the sound stays in place</h3>
+			</div>
 			
-			<h2>Nother sub</h2>
 		</div>
 		<div class="container vert">
 			
 			<h1>Example</h1>
-			<div class="btn-group btn-group-toggle" data-toggle="buttons" id="sigh">
+			<div class="btn-group btn-group-toggle" data-toggle="buttons" id="sigh" style="display: none;">
 				<label class="btn btn-secondary active btn-radio">
 					<input type="radio" name="options" id="option1" autocomplete="off">
 						Front - Back
@@ -86,19 +88,19 @@
 			  </label>
 			  </div>
 			<div class="container hor">
-				<button class="btn kekers" id="bt0">Up Left</button>
-				<button class="btn kekers" id="bt1">Up</button>
-				<button class="btn kekers" id="bt2">Up Right</button>
+				<button class="btn kekers" id="bt0" style="font-size: 3rem;"><i class="bi bi-arrow-up-left"></i></button>
+				<button class="btn kekers" id="bt1" style="font-size: 3rem;"><i class="bi bi-arrow-up"></i></button>
+				<button class="btn kekers" id="bt2" style="font-size: 3rem;"><i class="bi bi-arrow-up-right"></i></button>
 			</div>
 			<div class="container hor">
-				<button class="btn kekers" id="bt3">Left</button>
-				<button class="btn kekers" id="bt4">Mid</button>
-				<button class="btn kekers" id="bt5">Right</button>
+				<button class="btn kekers" id="bt3" style="font-size: 3rem;"><i class="bi bi-arrow-left"></i></button>
+				<button class="btn kekers" id="bt4" style="font-size: 3rem;"><i class="bi bi-dot"></i></button>
+				<button class="btn kekers" id="bt5" style="font-size: 3rem;"><i class="bi bi-arrow-right"></i></button>
 			</div>
 			<div class="container hor">
-				<button class="btn kekers" id="bt6">Down Left</button>
-				<button class="btn kekers" id="bt7">Down</button>
-				<button class="btn kekers" id="bt8">Down Right</button>
+				<button class="btn kekers" id="bt6" style="font-size: 3rem;"><i class="bi bi-arrow-down-left"></i></button>
+				<button class="btn kekers" id="bt7" style="font-size: 3rem;"><i class="bi bi-arrow-down"></i></button>
+				<button class="btn kekers" id="bt8" style="font-size: 3rem;"><i class="bi bi-arrow-down-right"></i></button>
 			</div>
 		</div>
 	</div>
