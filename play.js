@@ -15,7 +15,7 @@ var chart = document.querySelector('.chart-js').getContext('2d');
 //Main Screen ---> Game
 startBt.addEventListener('click', () => {
 	swapFocus4(mid);
-	init('2_8_DU_irc_1037');
+	init('3_3_DU_phone3shorter_irc_1037');
 })
 
 //End Screen ---> Main Screen
@@ -64,6 +64,7 @@ var info = {
 	distance: -1,
 	radius: -1,
 	axis: '',
+	soundName: '',
 	hrtf: ''
 }
 
@@ -124,18 +125,16 @@ function init(packName){
 	}
 
 	//✓set info from folder name
-	let reg = /(\d+)_(\d+)_(\w{2})_(.*)/;
+	//  reg = distance_radius_axis_sound_hrtf
+	let reg = /(\d+)_(\d+)_(\w{2})_([a-z0-9A-Z]+)_(.+)/;
 	let cap = packName.match(reg);
 	info.distance = cap[1];
 	info.radius = cap[2];
 	info.axis = cap[3];
-	info.hrtf = cap[4];
+	info.soundName = cap[4];
+	info.hrtf = cap[5];
 
 	rounds[0].innerHTML = 'Round 1';
-
-
-	//setGraphics, button text and/or svg background
-	//setGraphics()
 
 	//set graph
 	//fix second graph not apearing
@@ -239,6 +238,7 @@ function record(btn, correctX, correctY){
 		distance: info.distance,
 		radius: info.radius,
 		axis: info.axis,
+		soundName: info.soundName,
 		hrtf: info.hrtf,
 
 		deviceType: settings.deviceType,
