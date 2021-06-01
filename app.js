@@ -77,7 +77,7 @@ function loadPersist(){
         console.log('no settings');
         settings = {
             volume: 1,
-            deviceType: 'earbuds',
+            deviceType: 'default',
             deviceName: '',
             mode:'Light'
         };
