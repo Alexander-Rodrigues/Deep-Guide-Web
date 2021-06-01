@@ -56,7 +56,6 @@ function swapFocus4(element){
 	}, 5);
 }
 
-
 //Game Itself
 
 var soundPack;
