@@ -2,7 +2,7 @@ var buttons = document.querySelectorAll('.kekers');
 
 var audios = [];
 var soundPackRoot = 'soundPacks/';
-var packName = '3_3_DU_phone3shorter_irc_1037';
+var packName = '2_8_DU_phone3shorter_irc_1037';
 
 for(let i = 0; i < 9; i++){
 	let path = soundPackRoot + packName + '/' + i + '.wav'

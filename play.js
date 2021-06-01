@@ -15,7 +15,7 @@ var chart = document.querySelector('.chart-js').getContext('2d');
 //Main Screen ---> Game
 startBt.addEventListener('click', () => {
 	swapFocus4(mid);
-	init('3_3_DU_phone3shorter_irc_1037');
+	init('2_8_DU_phone3shorter_irc_1037');
 })
 
 //End Screen ---> Main Screen
