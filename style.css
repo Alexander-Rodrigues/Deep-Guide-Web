@@ -109,6 +109,11 @@
 	background-size: 60%;
 }
 
+#stats{
+	background-image: url('imgs/svgs/bar-chart-line.svg');
+	background-size: 50%;
+}
+
 .container{
 	max-width: 960px;
 }
@@ -237,6 +242,22 @@ body{
 }
 
 .stats{
+	margin-top: 30px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	flex-flow: column;
+	align-items: flex-start;
+	border-bottom: lightgray;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	text-align: justify;
+}
+
+.settings{
+	width: 100%;
+	padding-bottom: 20px;
+	
 	margin-top: 30px;
 	margin-bottom: 20px;
 	display: flex;

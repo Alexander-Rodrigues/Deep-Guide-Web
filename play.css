@@ -43,6 +43,7 @@ h1{
 	font-size: inherit;
 	font-family: inherit;
 	line-height: inherit;
+	margin-top: 5rem;
 }
 
 button:hover, button:focus, button:active{
