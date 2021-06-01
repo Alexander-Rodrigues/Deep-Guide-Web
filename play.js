@@ -3,7 +3,7 @@ var start = document.querySelector('#start');
 var mid = document.querySelector('#mid');
 var end = document.querySelector('#end');
 
-var debug = true;
+var debug = false;
 
 //Start Screen
 var startBt = document.querySelector('#start-button');
@@ -87,6 +87,8 @@ rightSound.volume = settings.volume;
 wrongSound = new Audio('sounds/wrong.wav');
 wrongSound.volume = settings.volume;
 
+var myChart;
+
 buttons.forEach(e => {
 	e.addEventListener('click', () => {
 		action(Number(e.value));
@@ -138,7 +140,17 @@ function init(packName){
 
 	//set graph
 	//fix second graph not apearing
-	if (!debug) getMetrics(soundPack, parseMetrics);
+	var tfix = true; //not showing second graph for now cuz only one game mode
+	if (!debug && !tfix) {
+		try{
+			myChart.destroy();
+			getMetrics(soundPack, parseMetrics);
+		}
+		catch(e){
+			console.log(e);
+		}
+		
+	}
 
 	play(Math.floor(Math.random() * 9));
 
@@ -311,13 +323,17 @@ function parseMetrics(arr) {
 			},
 			scales: {
 				y: {
-					display:false
-				}
-			},
+					display: false
+				},
+				x: {
+					display: true,
+					text: 'hallo'
+				},
+			}
 	   }
 	};
 
-	var myChart = new Chart(
+	myChart = new Chart(
 		chart,
 		config
 	);
