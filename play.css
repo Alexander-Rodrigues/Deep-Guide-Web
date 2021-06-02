@@ -72,9 +72,9 @@ button:hover, button:focus, button:active{
 
 canvas{
 	outline-color: orange;
-	background-color: #e6e8f4;
-	border-radius: 3rem;
-	padding: 3rem;
+	background-color: #ded7f0;
+	border-radius: 1rem;
+	padding: 1rem;
 	margin-top: 2rem;
 	margin-bottom: 10rem;
 	border-style: solid;

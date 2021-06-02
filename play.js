@@ -302,7 +302,14 @@ function timeElapsed(){
 //Draw graph, get's called by getMetric
 function parseMetrics(arr) {
 	arr = arr.slice(1,21);
-	console.log(arr);
+	var max = arr.reduce((a,b) => {
+		return Math.max(a,b);
+	})
+	var sum = arr.reduce((a,b) => {
+		return a + b;
+	})
+	console.log(max, sum , arr);
+
     var lab = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	
 
@@ -313,30 +320,58 @@ function parseMetrics(arr) {
 		datasets: [{
 			backgroundColor: '#9B50E2',
 			borderColor: '#A25BE4',
+			label: 'Rounds',
 			data: arr,
 			tension: 0.3,
+			pointRadius: 4,
+			hitRadius: 50,
 		}]
 	};
-
+	
 	const config = {
 		type: 'line',
 		data,
 		options: {
+			animation:false,
 			plugins: {
 				legend: {
-					display: false
+					display: false,
 				},
 				tooltip: {
-					enabled: false
+					enabled: true,
+					callbacks: {
+						label: function(context) {
+							var label = '';
+	
+							
+							if (context.parsed.y !== null) {
+								label += (Number(context.parsed.y)*100/sum).toFixed(1) + '%' ;
+							}
+							return label;
+						},
+						title: function() {},
+					},
+					displayColors: false,
+					padding: 5,
 				}
 			},
 			scales: {
 				y: {
-					display: false
+					display: false,
+					min: 0,
+					font: {
+						size: 20,
+					},
 				},
 				x: {
 					display: true,
-					text: 'hallo'
+					text: 'hallo',
+					step: 1,
+					ticks: {
+						autoSkip: false,
+						maxRotation: 0,
+                    	minRotation: 0,
+					},
 				},
 			}
 	   }
@@ -349,4 +384,10 @@ function parseMetrics(arr) {
 }
 
 //Gets the values and calls parseMetrics on them
-if (!debug) getMetrics('all', parseMetrics);
+if (debug){
+	var testArr = [0,88,60,30,12,3,4,6,7,4,2,14,28,14,45,23,13,8,7,6,10];
+	parseMetrics(testArr);
+} 
+else {
+	getMetrics('all', parseMetrics);
+}
