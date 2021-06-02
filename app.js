@@ -1,7 +1,11 @@
-const version = 10;
+const version = 13;
 var store = new Persist.Store('deepguide');
 loadPersist();
 
+function load_data() {
+    //new persist store goes here suposedly but we're ignoring it
+    //just leaving it here for remembering what this is about
+}
 
 //fix navbar bug
 $(document).ready(function() {
