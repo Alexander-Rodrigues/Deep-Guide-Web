@@ -3,7 +3,7 @@ var start = document.querySelector('#start');
 var mid = document.querySelector('#mid');
 var end = document.querySelector('#end');
 
-var debug = false;
+var debug = true;
 
 //Start Screen
 var startBt = document.querySelector('#start-button');

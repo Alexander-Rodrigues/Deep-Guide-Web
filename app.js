@@ -1,3 +1,4 @@
+const version = 5;
 var store = new Persist.Store('deepguide');
 loadPersist();
 
@@ -14,8 +15,7 @@ document.querySelector('#toggle').addEventListener('click', () => {
 
 //save changes on page exit
 window.onbeforeunload = function (e) {
-	saveSettings();
-    saveStats();
+	saveAll();
 };
 
 
@@ -37,6 +37,10 @@ function saveSettings(){
 
 function saveStats(){
     store.set('stats', JSON.stringify(stats));
+}
+
+function saveMeta(){
+    store.set('meta', JSON.stringify(meta));
 }
 
 function applyMode(){
@@ -66,6 +70,39 @@ function swap(name){
 
 var settings;
 var stats;
+var meta;
+
+function newSettings(){
+    settings = {
+        volume: 0.5,
+        deviceType: 'default',
+        deviceName: '',
+        mode:'Light'
+    };
+}
+
+function newStats(){
+    stats = {
+        id: myHash(Math.random()),
+        totalRounds: 0,
+        totalCorrectX: 0,
+        totalCorrectY: 0,
+        totalCorrects: 0,
+        bestRound: 0
+    };
+}
+
+function newMeta(){
+    meta = {
+        version: version,
+    };
+}
+
+function saveAll(){
+    saveSettings();
+    saveStats();
+    saveMeta();
+}
 
 function loadPersist(){
     let obj = store.get('settings');
@@ -75,12 +112,7 @@ function loadPersist(){
     }
     else {
         console.log('no settings');
-        settings = {
-            volume: 1,
-            deviceType: 'default',
-            deviceName: '',
-            mode:'Light'
-        };
+        newSettings();
         saveSettings();
     }
 
@@ -90,15 +122,26 @@ function loadPersist(){
     }
     else {
         console.log('new stats');
-        stats = {
-            id: myHash(Math.random()),
-            totalRounds: 0,
-            totalCorrectX: 0,
-            totalCorrectY: 0,
-            totalCorrects: 0,
-            bestRound: 0
-        };
+        newStats();
         saveStats();
+    }
+
+    obj = store.get('meta');
+    if (obj != null) {
+        meta = JSON.parse(obj);
+        if (meta.version != version){
+            newSettings();
+            newStats();
+            newMeta();
+            saveAll();
+        } 
+    }
+    else {
+        console.log('new meta');
+        newSettings();
+        newStats();
+        newMeta();
+        saveAll();
     }
 }
 
