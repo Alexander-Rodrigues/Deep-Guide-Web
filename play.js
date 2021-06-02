@@ -166,11 +166,10 @@ function action(btn){
 	let b = btn;
 	let p = playing;
 
-	correctX = Math.floor(b/3) === Math.floor(p/3);
-	correctY = b%3 === p%3;
+	correctX = b%3 === p%3;
+	correctY = Math.floor(b/3) === Math.floor(p/3);
 
 	//✓record data
-	console.log();
 	record(btn, correctX, correctY);
 
 
@@ -248,6 +247,7 @@ function record(btn, correctX, correctY){
 	let e = timeElapsed();
 	// add ✓button clicked, ✓sound location, ✓rest of info from pack
 	stats.totalRounds++;
+
 	if (correctX) stats.totalCorrectX++;
 	if (correctY) stats.totalCorrectY++;
 	if (correctX && correctY) stats.totalCorrects++;
