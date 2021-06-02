@@ -162,6 +162,7 @@ function init(packName){
 //Gets called on button press
 function action(btn){
 	if (gameState != 'midGame') return null;
+	if (trueRound == 1) stats.totalGames ++;
 	//✓check if button was right
 	let b = btn;
 	let p = playing;
@@ -265,6 +266,7 @@ function record(btn, correctX, correctY){
 
 		trueRound: trueRound,
 		gameRound: gameRound,
+		gameNumber: stats.totalGames,
 
 		buttonPressed: btn,
 		soundPlaying: playing,

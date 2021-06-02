@@ -1,4 +1,4 @@
-const version = 9;
+const version = 10;
 var store = new Persist.Store('deepguide');
 loadPersist();
 
@@ -84,6 +84,7 @@ function newSettings(){
 function newStats(){
     stats = {
         id: myHash(Math.random()),
+        totalGames: 0,
         totalRounds: 0,
         totalCorrectX: 0,
         totalCorrectY: 0,
