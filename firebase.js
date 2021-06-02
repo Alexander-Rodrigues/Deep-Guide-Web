@@ -22,10 +22,8 @@ function pushUnsorted(obj){
 }
 
 //Calls both by using the parameters for the sorted one and then adding them to the object before pushing to unsorted
-function pushBoth(name, num, obj){
-	firebase.database().ref(`sorted/${name}/${num}/`).set(obj);
-	obj.name = name;
-	obj.totalRounds = num;
+function pushBoth(name, currentGame, tRounds, obj){
+	firebase.database().ref(`sorted/${name}/${currentGame}/${tRounds}/`).set(obj);
 	firebase.database().ref('unsorted/').push(obj);
 }
 

@@ -254,6 +254,7 @@ function record(btn, correctX, correctY){
 	if (correctX && correctY) stats.totalCorrects++;
 
 	let record = {
+		name: stats.id,
 		packName: soundPack,
 		distance: info.distance,
 		radius: info.radius,
@@ -275,6 +276,7 @@ function record(btn, correctX, correctY){
 		correctY: correctY,
 		correct: correctX && correctY,
 
+		totalRounds: stats.totalRounds,
 		totalCorrectX: stats.totalCorrectX,
 		totalCorrectY: stats.totalCorrectY,
 		totalCorrects: stats.totalCorrects, 
@@ -284,7 +286,7 @@ function record(btn, correctX, correctY){
 
 	saveStats();
 
-	pushBoth(stats.id, stats.totalRounds, record);
+	pushBoth(stats.id, stats.totalGames, stats.totalRounds, record);
 }
 
 //For measuring time between rounds
@@ -312,7 +314,7 @@ function parseMetrics(arr) {
 	})
 	console.log(max, sum , arr);
 
-    var lab = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+    var lab = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
 	
 
 

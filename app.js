@@ -1,4 +1,4 @@
-const version = 13;
+const version = 14;
 var store = new Persist.Store('deepguide');
 loadPersist();
 
