@@ -132,8 +132,8 @@ function init(packName){
 	//  reg = distance_radius_axis_sound_hrtf
 	let reg = /(\d+)_(\d+)_(\w{2})_([a-z0-9A-Z]+)_(.+)/;
 	let cap = packName.match(reg);
-	info.distance = cap[1];
-	info.radius = cap[2];
+	info.distance = Number(cap[1]);
+	info.radius = Number(cap[2]);
 	info.axis = cap[3];
 	info.soundName = cap[4];
 	info.hrtf = cap[5];
