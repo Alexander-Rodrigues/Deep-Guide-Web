@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-	console.log('loaded');
+	//console.log('loaded');
   });
 
 window.onbeforeunload = function (e) {
 	settings.volume = document.querySelector('#volume').value;
 	settings.deviceType = document.querySelector('.btn-radio.active').firstElementChild.value
-	console.log(settings);
 	settings.deviceName = document.querySelector('#devicename').value;
 	saveSettings();
 };

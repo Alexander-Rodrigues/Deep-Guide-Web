@@ -112,11 +112,9 @@ function saveAll(){
 function loadPersist(){
     let obj = store.get('settings');
     if (obj != null) {
-        console.log('existing settings');
         settings = JSON.parse(obj);
     }
     else {
-        console.log('no settings');
         newSettings();
         saveSettings();
     }
@@ -126,7 +124,6 @@ function loadPersist(){
         stats = JSON.parse(obj);
     }
     else {
-        console.log('new stats');
         newStats();
         saveStats();
     }
@@ -134,7 +131,6 @@ function loadPersist(){
     obj = store.get('meta');
     if (obj != null) {
         meta = JSON.parse(obj);
-        console.log(meta.version, version);
         if (meta.version != version){
             newSettings();
             newStats();
@@ -143,7 +139,6 @@ function loadPersist(){
         } 
     }
     else {
-        console.log('new meta');
         newSettings();
         newStats();
         newMeta();
