@@ -28,7 +28,19 @@
 	<script type='text/javascript' src='persist-js-0.3.1\persist-min.js'></script>
 	
 </head>
+
+
 <body class="text-center" class="d-flex align-items-center" id="header-main">
+	<div class="outer-pop">
+		<div class="pop-up">
+			<h3>I'm playing this on...</h3>
+			<div>
+				<button id="ear"  class="smol-button" value="earbuds"><i class="bi bi-earbuds"><p>Earbuds</p></i></button>
+				<button id="head"  class="smol-button" value="headphones"><i class="bi bi-headphones"></i><p>Headphones</p></button>
+				<button id="other"  class="smol-button" value="other"><i class="bi bi-question-lg"></i><p>Other</p></button>
+			</div>
+		</div>
+	</div>
 	<div id="daddy">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<div class="container container-wide position-relative">
@@ -66,7 +78,7 @@
 				</div>
 			</div>
 		</nav>
-		
+
 		<div id='screen-daddy' class="container">
 			<div id="start" class="screen">
 				<h1>Game Name</h1>
@@ -105,9 +117,11 @@
 			<h1>Global Statistics</h1>
 			<canvas class="chart-js" ></canvas>
 		</div>
+		
+		
 	</div>
+	
 </body>
-
 
 	<script src="app.js" charset="utf-8"></script>
 	<script src="play.js" charset="utf-8"></script>

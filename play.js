@@ -37,7 +37,7 @@ end.style.display = 'none';
 
 
 //pop in start menu first
-swapFocus4(start);
+//swapFocus4(start);
 
 //assumes all elements start with opacity: 0; & display: 'none';
 //Transition from one element to the other by hiding the currently active one and fading-in the next
@@ -395,3 +395,37 @@ if (debug){
 else {
 	getMetrics('all', parseMetrics);
 }
+
+var out = document.querySelector('.outer-pop');
+var popBs = document.querySelectorAll('.smol-button');
+popBs.forEach(b => {
+	b.addEventListener('click', () => {
+		console.log(b.value);
+		settings.deviceType = b.value;
+		saveSettings();
+	})
+})
+var outID;
+
+function popIn(element){
+	element.style.display = 'block';
+	outID = setInterval(() => {
+		element.style.opacity = Number(element.style.opacity) + 0.05;
+		if (element.style.opacity >= 1) {
+			clearInterval(outID);
+		}
+	}, 5);
+}
+
+function popOut(element){
+	clearInterval(outID);
+	outID = setInterval(() => {
+		element.style.opacity = Number(element.style.opacity) - 0.05;
+		if (element.style.opacity >= 1) {
+			clearInterval(outID);
+			element.style.display = 'none';
+		}
+	}, 5);
+}
+
+

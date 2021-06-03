@@ -80,3 +80,52 @@ canvas{
 	border-style: solid;
 	border-color: var(--mainColor);
 }
+
+.outer-pop{
+	position: fixed;
+	width:  100vw;
+	height: 100vh;
+	background-color: rgba(40,40,40,0.8);
+
+}
+
+.pop-up{
+
+	position: absolute;
+	--my-width: 350px;
+	--my-height: 200px;
+
+
+	width:  var(--my-width);
+	height: var(--my-height);
+
+	top: calc(50vh - var(--my-height)/2);
+	left: calc(50vw - var(--my-width)/2);
+	outline-color: orange;
+	outline-style: solid;
+	outline-width: 0px;
+
+	padding: 20px;
+
+	
+	background-color: var(--backgroundLight);
+	color: var(--contrastLight);
+	border-radius: 20px;
+	border-color: var(--mainColor);
+	border-style: solid;
+
+}
+
+.smol-button{
+	margin-top: 10px;
+	border: medium none;
+	border-radius: 12%;
+
+	background: var(--mainColor);
+	font-size: 0.9rem;
+	font-style: normal;
+	word-wrap: break-word;
+
+	width: calc(var(--my-width) / 4);
+	height: calc(var(--my-width) / 4);
+}
