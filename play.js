@@ -14,8 +14,18 @@ var chart = document.querySelector('.chart-js').getContext('2d');
 
 //Main Screen ---> Game
 startBt.addEventListener('click', () => {
-	swapFocus4(mid);
-	init('2_8_DU_phone3shorter_irc_1037');
+	let pack = '2_8_DU_phone3shorter_irc_1037';
+
+	console.log((settings.deviceType == 'default'));
+	if (settings.deviceType == 'default'){
+		console.log('first game');
+		popIn2(pack);
+	}
+	else {
+		swapFocus4(mid);
+		init(pack);
+	}
+	
 })
 
 //End Screen ---> Main Screen
@@ -403,29 +413,47 @@ popBs.forEach(b => {
 		console.log(b.value);
 		settings.deviceType = b.value;
 		saveSettings();
+		out.style.display = 'none';
+		swapFocus4(mid);
 	})
 })
-var outID;
 
+var outID;
 function popIn(element){
+	element.style.opacity = 0;
 	element.style.display = 'block';
 	outID = setInterval(() => {
-		element.style.opacity = Number(element.style.opacity) + 0.05;
+		element.style.opacity = Number(element.style.opacity) + 0.03;
 		if (element.style.opacity >= 1) {
 			clearInterval(outID);
 		}
 	}, 5);
 }
 
-function popOut(element){
-	clearInterval(outID);
-	outID = setInterval(() => {
-		element.style.opacity = Number(element.style.opacity) - 0.05;
+function popIn(element){
+	element.style.opacity = 0;
+	element.style.display = 'block';
+	let outID = setInterval(() => {
+		element.style.opacity = Number(element.style.opacity) + 0.03;
 		if (element.style.opacity >= 1) {
 			clearInterval(outID);
-			element.style.display = 'none';
 		}
 	}, 5);
 }
 
+function popIn2(pack){
+	let out = document.querySelector('.outer-pop');
+	let popBs = document.querySelectorAll('.smol-button');
+	popBs.forEach(b => {
+		b.addEventListener('click', () => {
+			console.log(b.value);
+			settings.deviceType = b.value;
+			saveSettings();
+			out.style.display = 'none';
+			swapFocus4(mid);
+			init(pack);
+		})
+	})
 
+	popIn(out);
+}
