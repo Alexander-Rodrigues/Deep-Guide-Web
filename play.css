@@ -125,7 +125,9 @@ canvas{
 	background: var(--mainColor);
 	font-size: 0.9rem;
 	font-style: normal;
+	color: inherit;
 	word-wrap: break-word;
+	padding-top: 1rem;
 
 	width: calc(var(--my-width) / 4);
 	height: calc(var(--my-width) / 4);

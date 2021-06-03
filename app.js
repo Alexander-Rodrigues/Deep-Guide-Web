@@ -1,4 +1,4 @@
-const version = 19;
+const version = 20;
 var store = new Persist.Store('deepguide');
 loadPersist();
 
@@ -134,6 +134,7 @@ function loadPersist(){
     obj = store.get('meta');
     if (obj != null) {
         meta = JSON.parse(obj);
+        console.log(meta.version, version);
         if (meta.version != version){
             newSettings();
             newStats();
