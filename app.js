@@ -1,4 +1,4 @@
-const version = 20;
+const version = 21;
 var store = new Persist.Store('deepguide');
 loadPersist();
 
@@ -93,7 +93,9 @@ function newStats(){
         totalCorrectX: 0,
         totalCorrectY: 0,
         totalCorrects: 0,
-        bestRound: 0
+        bestRound: 0,
+
+        acc:[[0,0], [0,0], [0,0], [0,0], [0,0], [0,0], [0,0], [0,0], [0,0]],
     };
 }
 

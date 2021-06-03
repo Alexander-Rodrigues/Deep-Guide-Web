@@ -5,6 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Deep Guide WebApp</title>
 
+	<!-- Firebase API -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+	<script src="firebase.js"></script>
+	
+	<!-- Chart Js API -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.0/dist/chart.min.js"></script>
+
 	<!-- jQuery & Popper.js -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -61,19 +69,20 @@
 		
 		<div class="container" id="normal">
 			<h1>Stats</h1>
+			<h2 id="empty"></h2>
 			<div class="container stats" >
 				<h2>Accuracy</h2>
-				<h4 id="hor">Horizontal: ???</h4>
-				<h4 id="vert">Vertical: ???</h4>
+				<h4 id="hor"></h4>
+				<h4 id="vert"></h4>
 				
 			</div>
 			<div class="container stats" >
-				<h2 id="highscore">Top Score: nth Round</h2>
+				<h2 id="highscore"></h2>
 				
 			</div>
-			<div class="container stats" style="display: none;">
-				<h2>More stats idk maybe a chart</h2>
-				
+			<div class="container stats">
+				<h2 id="chart-title"></h2>
+				<canvas class="chart-js" ></canvas>
 			</div>
 
 		</div>

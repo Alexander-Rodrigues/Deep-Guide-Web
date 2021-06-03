@@ -60,3 +60,42 @@ function addMetrics(name, upperExc=21){
 		console.log(`metrics/${name}/${i}/`);
 	}
 }
+
+function test(id){
+	var ref = firebase.database().ref(`sorted/${id}/`);
+	ref.orderByChild("round").on("child_added", function(snapshot) {
+		console.log(snapshot.key);
+	  });
+}
+
+function pushProgress(name, score){
+	firebase.database().ref(`progression/${name}/`).push(score);
+}
+/* 
+for(let i = 1; i < Number.MAX_SAFE_INTEGER; i = i*2){
+	pushProgress('DEMOS', i);
+	console.log(i);
+} */
+
+function getProgression(name, func){
+	firebase.database().ref(`progression/${name}/`).get().then((snapshot) => {
+		let i = 1;
+		let label = [];
+		let value = [];
+		if (snapshot.exists()) {
+			//func(snapshot.val())
+			snapshot.forEach(element => {
+				label.push(i);
+				value.push(element.val());
+				i++;
+			});
+			func(label, value);
+		} else {
+			func(label, value);
+		}
+		}).catch((error) => {
+		console.error(error);
+		return 'error';
+	});
+}
+
