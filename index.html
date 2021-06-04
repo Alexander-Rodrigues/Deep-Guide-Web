@@ -29,7 +29,6 @@
 	
 </head>
 
-
 <body class="text-center" class="d-flex align-items-center" id="header-main">
 	<div class="outer-pop">
 		<div class="pop-up">
@@ -80,8 +79,16 @@
 				<h1>Phone Finder</h1>
 				<h1><i class="bi bi-play-fill" style="margin-bottom: 5rem;"></i></h1>
 				<h3>Click the direction the ring tone's coming from</h3>
-				<button id="start-button" class="normal-button">Start</button>
 			</div>
+
+			<div id="start-redirect" class="screen">
+				<h1>Phone Finder</h1>
+				<h1><i class="bi bi-play-fill" style="margin-bottom: 5rem;"></i></h1>
+				<h3>Click the direction the ring tone's coming from</h3>
+				<h3 id="redirect-h3">Hard Mode</h3>
+				<button id="start-redirect-button" class="normal-button play-button">Start</button>
+			</div>
+
 			<div id="mid" class="screen">
 				<h1 class="round">Round n</h1>
 		
@@ -103,21 +110,20 @@
 					<button class="sound-button" value="8"><i class="bi bi-arrow-down-right"></i></button>
 				</div>
 			</div>
+
 			<div id="end" class="screen">
 				<h1 class="round">Round n</h1>
 				<h1><i class="bi bi-play-fill" style="margin-bottom: 5rem;"></i></h1>
 				<h3>Nice work! Try again or check out your stats over <a href="stats.html" style="color: var(--mainColor);">here</a>.</h3>
-				<button id="retry-button"  class="normal-button">Try Again</button>
+				<button id="play-button"  class="normal-button">Play</button>
+				<button id="retry-button"  class="normal-button play-button">Try Again</button>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container global-stats">
 			<h1>Global Statistics</h1>
 			<canvas class="chart-js" ></canvas>
 		</div>
-		
-		
 	</div>
-	
 </body>
 
 	<script src="app.js" charset="utf-8"></script>

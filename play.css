@@ -42,7 +42,9 @@ h1{
 	font-size: inherit;
 	font-family: inherit;
 	line-height: inherit;
-	margin-top: 5rem;
+	margin-top: 0.6rem;
+	margin-left: 0.3rem;
+	margin-right: 0.3rem;
 }
 
 button:hover, button:focus, button:active{
@@ -131,4 +133,8 @@ canvas{
 
 	width: calc(var(--my-width) / 4);
 	height: calc(var(--my-width) / 4);
+}
+
+#redirect-h3{
+	margin: 2rem;
 }

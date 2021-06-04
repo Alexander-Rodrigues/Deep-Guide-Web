@@ -1,20 +1,28 @@
-//The 3 screens
+
+
+//The 4 screens
 var start = document.querySelector('#start');
+var startRedirect = document.querySelector('#start-redirect');
 var mid = document.querySelector('#mid');
 var end = document.querySelector('#end');
 
 var debug = true;
 
 //Start Screen
-var startBt = document.querySelector('#start-button');
+var startBt = document.querySelector('#start-redirect-button');
+
+var playBt =document.querySelector('#play-button');
 var retryBt = document.querySelector('#retry-button');
 
 //chart
 var chart = document.querySelector('.chart-js').getContext('2d');
 
+var global = document.querySelector('.global-stats');
+
 //Main Screen ---> Game
-startBt.addEventListener('click', () => {
-	let pack = '2_8_DU_phone3shorter_irc_1037';
+
+
+function popIn3(pack){
 	if (settings.deviceType == 'default'){
 		popIn2(pack);
 	}
@@ -22,13 +30,24 @@ startBt.addEventListener('click', () => {
 		swapFocus4(mid);
 		init(pack);
 	}
-	
-})
+}
 
 //End Screen ---> Main Screen
-retryBt.addEventListener('click', () => {
+playBt.addEventListener('click', () => {
 	swapFocus4(start);
-})
+});
+
+retryBt.addEventListener('click', () => {
+	startBt.value = soundPack;
+	swapFocus4(startRedirect);
+});
+
+global.addEventListener('click', () => {
+	global.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+});
+
+//Start at top of page
+scroll(0,0);
 
 //making other elements non opaque/non displaying
 var active = start;
@@ -36,12 +55,29 @@ var id;
 active.style.opacity = 1;
 active.style.display = 'block';
 
+startRedirect.style.opacity = 0;
 mid.style.opacity = 0;
 end.style.opacity = 0;
 
+startRedirect.style.display = 'none';
 mid.style.display = 'none';
 end.style.display = 'none';
 
+Object.entries(soundPackSet).forEach(p => {
+	let c = document.createElement('button');
+	c.innerHTML = p[1];
+	c.classList.add('normal-button');
+	c.classList.add('play-button');
+	c.value = p[0];
+	start.appendChild(c);
+});
+
+document.querySelectorAll('.play-button').forEach(pb => {
+	pb.addEventListener('click', () => {
+		popIn3(pb.value);
+		console.log('What: ' + pb.value);
+	})
+});
 
 //pop in start menu first
 //swapFocus4(start);
@@ -117,12 +153,14 @@ function stop(){
 }
 
 function init(packName){
+	console.log(packName);
 	hearts = 3;
 	gameRound = 1;
 	trueRound = 1;
 	gameState = 'midGame';
 	audios = [];
 	soundPack = packName;
+	retryBt.value = packName;
 
 	for(let i = 0; i < 9; i++){
 		let path = soundPackRoot + packName + '/' + i + '.wav'
@@ -214,6 +252,8 @@ function action(btn){
 		e.innerHTML = 'Round ' + gameRound;
 	})
 }
+
+
 
 function rightButtonAnim(b){
 	rightSound.play();
@@ -449,4 +489,26 @@ function popIn2(pack){
 	})
 
 	popIn(out);
+}
+
+//Start game if url bar has ?mode='packname'
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+const mode = urlParams.get('mode');
+if (mode != null) {
+	if (soundPackSet[mode] != undefined || soundPackSet[mode] != null) {
+		active.style.opacity = 0;
+		active.style.display = 'none';
+		
+		startRedirect.style.display = 'none';
+
+		active = startRedirect;
+		active.style.opacity = 1;
+		active.style.display = 'block';
+
+		document.querySelector('#redirect-h3').innerHTML = `${soundPackSet[mode]} Mode`;
+
+		startBt.value = mode;
+	}
 }
