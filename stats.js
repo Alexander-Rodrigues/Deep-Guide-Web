@@ -10,9 +10,22 @@ var dropDownToggle = document.querySelector('.dropdown-toggle');
 var myChart;
 //stats = JSON.parse('{"id":"DEBUG","totalRounds":90,"totalCorrectX":25,"totalCorrectY":43,"totalCorrects":14,"bestRound":7}');
 
-currentPack = Object.entries(soundPackSet)[0][0];
-displayStats();
-dropDownToggle.innerHTML = Object.entries(soundPackSet)[0][1]
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+const mode = urlParams.get('mode');
+
+if (mode != null) {
+	currentPack = mode;
+	displayStats();
+	dropDownToggle.innerHTML = soundPackSet[mode];
+}
+else {
+	currentPack = Object.entries(soundPackSet)[0][0];
+	displayStats();
+	dropDownToggle.innerHTML = Object.entries(soundPackSet)[0][1]
+}
+
 Object.entries(soundPackSet).forEach(e => {
 	var c = document.createElement('a');
 	c.innerHTML = e[1];

@@ -14,6 +14,8 @@ var startBt = document.querySelector('#start-redirect-button');
 var playBt =document.querySelector('#play-button');
 var retryBt = document.querySelector('#retry-button');
 
+var statsH3 = document.querySelector('#stats-h3');
+
 //chart
 var chart = document.querySelector('.chart-js').getContext('2d');
 
@@ -238,6 +240,7 @@ function action(btn){
 			if (stats[soundPack].bestRound < gameRound) stats[soundPack].bestRound = gameRound;
 			saveStats();
 			pushProgress(stats.id, soundPack, gameRound);
+			statsH3.innerHTML = `Nice work! Try again or check out your stats over <a href="stats.html?mode=${soundPack}" style="color: var(--mainColor);">here</a>.`;
 			setTimeout(() => {
 				swapFocus4(end);
 			}, 300);
