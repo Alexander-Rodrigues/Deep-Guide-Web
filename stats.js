@@ -19,10 +19,11 @@ Object.entries(soundPackSet).forEach(e => {
 	c.classList.add('dropdown-item');
 	c.href = '#';
 	c.addEventListener('click', () => {
-		myChart.destroy();
+		if (myChart != null) myChart.destroy();
 		currentPack = e[0];
 		dropDownToggle.innerHTML = e[1];
 		displayStats();
+		console.log('fe');
 	})
 	dropDownMenu.appendChild(c);
 });
