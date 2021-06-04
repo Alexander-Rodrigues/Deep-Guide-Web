@@ -11,6 +11,7 @@ var myChart;
 //stats = JSON.parse('{"id":"DEBUG","totalRounds":90,"totalCorrectX":25,"totalCorrectY":43,"totalCorrects":14,"bestRound":7}');
 
 currentPack = Object.entries(soundPackSet)[0][0];
+displayStats();
 dropDownToggle.innerHTML = Object.entries(soundPackSet)[0][1]
 Object.entries(soundPackSet).forEach(e => {
 	var c = document.createElement('a');
@@ -21,25 +22,35 @@ Object.entries(soundPackSet).forEach(e => {
 		myChart.destroy();
 		currentPack = e[0];
 		dropDownToggle.innerHTML = e[1];
-		getProgression(stats.id, currentPack, parseProgression);
+		displayStats();
 	})
 	dropDownMenu.appendChild(c);
 });
 
-if (stats.totalRounds > 0){
-	hor.innerHTML = 'Horizontal: ' + (stats.totalCorrectX * 100 /  stats.totalRounds).toFixed(1) + '%'
-	vert.innerHTML = 'Vertical: ' + (stats.totalCorrectY * 100 /  stats.totalRounds).toFixed(1) + '%'
-	highscore.innerHTML = 'Top Score: ' + stats.bestRound + ' Rounds!'
-	chartTitle.innerHTML = 'Progression: ';
-	getProgression(stats.id, currentPack, parseProgression);
-}
-else{
-	document.querySelectorAll('.stats').forEach(e => {
-		e.style.display = 'none';
-	})
-	document.querySelector('#empty').innerHTML = 'Play atleast one game <a href="play.html" style="color: var(--mainColor)">here</a> to see your stats.';
+function displayStats(){
+	console.log(stats[currentPack].totalRounds);
+	if (stats[currentPack].totalRounds > 0){
+		document.querySelectorAll('.stats').forEach(e => {
+			e.style.display = 'block';
+		})
+		document.querySelector('#empty').innerHTML = '';
 
+		hor.innerHTML = 'Horizontal: ' + (stats[currentPack].totalCorrectX * 100 /  stats[currentPack].totalRounds).toFixed(1) + '%'
+		vert.innerHTML = 'Vertical: ' + (stats[currentPack].totalCorrectY * 100 /  stats[currentPack].totalRounds).toFixed(1) + '%'
+		highscore.innerHTML = 'Top Score: ' + stats[currentPack].bestRound + ' Rounds!'
+		chartTitle.innerHTML = 'Progression: ';
+		getProgression(stats.id, currentPack, parseProgression);
+	}
+	else{
+		document.querySelectorAll('.stats').forEach(e => {
+			e.style.display = 'none';
+		})
+		document.querySelector('#empty').innerHTML = 'Play atleast one game on ' + soundPackSet[currentPack] + ' <a href="play.html" style="color: var(--mainColor)">here</a> to see your stats.';
+	
+	}
 }
+
+
 
 //Draw graph, get's called by getMetric
 function parseProgression(labels, values) {
@@ -53,6 +64,11 @@ function parseProgression(labels, values) {
 			tension: 0,
 			pointRadius: 4,
 			hitRadius: 30,
+			fill: {
+				target: 'origin',
+				above: 'rgba(155, 80, 226, 0.4)',   // Area will be red above the origin
+				below: 'rgb(0, 0, 255)'    // And blue below the origin
+            },
 		}]
 	};
 	
@@ -60,6 +76,12 @@ function parseProgression(labels, values) {
 		type: 'line',
 		data,
 		options: {
+			elements:{
+				line: {
+					fill: true,
+					below: '#A2FFE4',
+				},
+			},
 			animation:true,
 			plugins: {
 				legend: {
@@ -72,6 +94,10 @@ function parseProgression(labels, values) {
 			scales: {
 				y: {
 					//type: 'logarithmic',
+					min: 0,
+				},
+				x: {
+					
 				}
 			  }
 	   }

@@ -169,7 +169,7 @@ function init(packName){
 //Gets called on button press
 function action(btn){
 	if (gameState != 'midGame') return null;
-	if (trueRound == 1) stats.totalGames ++;
+	if (trueRound == 1) stats[soundPack].totalGames++;
 	//✓check if button was right
 	let b = btn;
 	let p = playing;
@@ -197,7 +197,7 @@ function action(btn){
 			gameState = 'finished';
 			stop();
 			incMetric(soundPack, gameRound);
-			if (stats.bestRound < gameRound) stats.bestRound = gameRound;
+			if (stats[soundPack].bestRound < gameRound) stats[soundPack].bestRound = gameRound;
 			saveStats();
 			pushProgress(stats.id, soundPack, gameRound);
 			setTimeout(() => {
@@ -253,11 +253,11 @@ function record(btn, correctX, correctY){
 
 	let e = timeElapsed();
 	// add ✓button clicked, ✓sound location, ✓rest of info from pack
-	stats.totalRounds++;
+	stats[soundPack].totalRounds++;
 
-	if (correctX) stats.totalCorrectX++;
-	if (correctY) stats.totalCorrectY++;
-	if (correctX && correctY) stats.totalCorrects++;
+	if (correctX) stats[soundPack].totalCorrectX++;
+	if (correctY) stats[soundPack].totalCorrectY++;
+	if (correctX && correctY) stats[soundPack].totalCorrects++;
 
 	let record = {
 		name: stats.id,
@@ -273,7 +273,7 @@ function record(btn, correctX, correctY){
 
 		trueRound: trueRound,
 		gameRound: gameRound,
-		gameNumber: stats.totalGames,
+		gameNumber: stats[soundPack].totalGames,
 
 		buttonPressed: btn,
 		soundPlaying: playing,
@@ -282,17 +282,17 @@ function record(btn, correctX, correctY){
 		correctY: correctY,
 		correct: correctX && correctY,
 
-		totalRounds: stats.totalRounds,
-		totalCorrectX: stats.totalCorrectX,
-		totalCorrectY: stats.totalCorrectY,
-		totalCorrects: stats.totalCorrects, 
+		totalRounds: stats[soundPack].totalRounds,
+		totalCorrectX: stats[soundPack].totalCorrectX,
+		totalCorrectY: stats[soundPack].totalCorrectY,
+		totalCorrects: stats[soundPack].totalCorrects, 
 
 		elapsed: e
 	}
 
 	saveStats();
 
-	pushBoth(stats.id, stats.totalGames, stats.totalRounds, record);
+	pushBoth(stats.id, stats[soundPack].totalGames, stats[soundPack].totalRounds, record);
 }
 
 //For measuring time between rounds
