@@ -199,7 +199,7 @@ function action(btn){
 			incMetric(soundPack, gameRound);
 			if (stats.bestRound < gameRound) stats.bestRound = gameRound;
 			saveStats();
-			pushProgress(stats.id, gameRound);
+			pushProgress(stats.id, soundPack, gameRound);
 			setTimeout(() => {
 				swapFocus4(end);
 			}, 300);

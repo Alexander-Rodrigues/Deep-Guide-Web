@@ -68,8 +68,8 @@ function test(id){
 	  });
 }
 
-function pushProgress(name, score){
-	firebase.database().ref(`progression/${name}/`).push(score);
+function pushProgress(name, pack, score){
+	firebase.database().ref(`progression/${pack}/${name}/`).push(score);
 }
 /* 
 for(let i = 1; i < Number.MAX_SAFE_INTEGER; i = i*2){
@@ -77,8 +77,9 @@ for(let i = 1; i < Number.MAX_SAFE_INTEGER; i = i*2){
 	console.log(i);
 } */
 
-function getProgression(name, func){
-	firebase.database().ref(`progression/${name}/`).get().then((snapshot) => {
+function getProgression(name, pack, func){
+	console.log(`progression/${pack}/${name}/`);
+	firebase.database().ref(`progression/${pack}/${name}/`).get().then((snapshot) => {
 		let i = 1;
 		let label = [];
 		let value = [];

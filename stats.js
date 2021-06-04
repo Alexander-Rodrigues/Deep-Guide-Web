@@ -4,14 +4,34 @@ var highscore = document.querySelector('#highscore');
 var chart = document.querySelector('.chart-js').getContext('2d');
 var chartTitle = document.querySelector('#chart-title');
 
+var dropDownMenu = document.querySelector('.dropdown-menu');
+var dropDownToggle = document.querySelector('.dropdown-toggle');
+
+var myChart;
 //stats = JSON.parse('{"id":"DEBUG","totalRounds":90,"totalCorrectX":25,"totalCorrectY":43,"totalCorrects":14,"bestRound":7}');
+
+currentPack = Object.entries(soundPackSet)[0][0];
+dropDownToggle.innerHTML = Object.entries(soundPackSet)[0][1]
+Object.entries(soundPackSet).forEach(e => {
+	var c = document.createElement('a');
+	c.innerHTML = e[1];
+	c.classList.add('dropdown-item');
+	c.href = '#';
+	c.addEventListener('click', () => {
+		myChart.destroy();
+		currentPack = e[0];
+		dropDownToggle.innerHTML = e[1];
+		getProgression(stats.id, currentPack, parseProgression);
+	})
+	dropDownMenu.appendChild(c);
+});
 
 if (stats.totalRounds > 0){
 	hor.innerHTML = 'Horizontal: ' + (stats.totalCorrectX * 100 /  stats.totalRounds).toFixed(1) + '%'
 	vert.innerHTML = 'Vertical: ' + (stats.totalCorrectY * 100 /  stats.totalRounds).toFixed(1) + '%'
 	highscore.innerHTML = 'Top Score: ' + stats.bestRound + ' Rounds!'
 	chartTitle.innerHTML = 'Progression: ';
-	getProgression(stats.id, parseProgression);
+	getProgression(stats.id, currentPack, parseProgression);
 }
 else{
 	document.querySelectorAll('.stats').forEach(e => {
@@ -40,7 +60,7 @@ function parseProgression(labels, values) {
 		type: 'line',
 		data,
 		options: {
-			animation:false,
+			animation:true,
 			plugins: {
 				legend: {
 					display: false,
