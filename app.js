@@ -40,6 +40,7 @@ var styleProperties = [
 var moon = document.querySelector('#toggle').firstElementChild;
 applyMode();
 
+//Functions for saving each storage type
 function saveSettings(){
 	store.set('settings', JSON.stringify(settings));
 }
@@ -52,6 +53,7 @@ function saveMeta(){
 	store.set('meta', JSON.stringify(meta));
 }
 
+//Swaps all css varables for night/light mode, swaps the moon icon to be filled, saves
 function applyMode(){
 	styleProperties.forEach(e => {
 		swap(e);
@@ -76,7 +78,7 @@ function swap(name){
 	document.documentElement.style.setProperty(name, 'var(' + name + settings.mode + ')');
 }
 
-
+//The default variables, for ease of change
 var settings;
 var stats;
 var meta;
@@ -118,6 +120,7 @@ function saveAll(){
 	saveMeta();
 }
 
+//Loads all local storage, verifies if each entry exists/ creates if it doesnt based on the newSomething functions
 function loadPersist(){
 	let obj = store.get('settings');
 	if (obj != null) {

@@ -24,16 +24,6 @@ var global = document.querySelector('.global-stats');
 //Main Screen ---> Game
 
 
-function popIn3(pack){
-	if (settings.deviceType == 'default'){
-		popIn2(pack);
-	}
-	else {
-		swapFocus4(mid);
-		init(pack);
-	}
-}
-
 //End Screen ---> Main Screen
 playBt.addEventListener('click', () => {
 	swapFocus4(start);
@@ -135,6 +125,7 @@ wrongSound.volume = settings.volume;
 
 var myChart;
 
+//Assigns a value to each button 0-8
 buttons.forEach(e => {
 	e.addEventListener('click', () => {
 		action(Number(e.value));
@@ -154,6 +145,7 @@ function stop(){
 	audios[playing].currentTime = 0;
 }
 
+//Starts the game and resets all game elements
 function init(packName){
 	console.log(packName);
 	hearts = 3;
@@ -256,13 +248,13 @@ function action(btn){
 	})
 }
 
-
-
+//Get's called on correct button presses
 function rightButtonAnim(b){
 	rightSound.play();
 	rightSound.currentTime = 0;
 }
 
+//Get's called on wrong button presses
 function wrongButtonAnim(b){
 	wrongSound.play();
 	let button = buttons[b];
@@ -444,29 +436,7 @@ else {
 	getMetrics('all', parseMetrics);
 }
 
-var out = document.querySelector('.outer-pop');
-var popBs = document.querySelectorAll('.smol-button');
-popBs.forEach(b => {
-	b.addEventListener('click', () => {
-		settings.deviceType = b.value;
-		saveSettings();
-		out.style.display = 'none';
-		swapFocus4(mid);
-	})
-})
-
-var outID;
-function popIn(element){
-	element.style.opacity = 0;
-	element.style.display = 'block';
-	outID = setInterval(() => {
-		element.style.opacity = Number(element.style.opacity) + 0.03;
-		if (element.style.opacity >= 1) {
-			clearInterval(outID);
-		}
-	}, 5);
-}
-
+//Makes an html element fade-in
 function popIn(element){
 	element.style.opacity = 0;
 	element.style.display = 'block';
@@ -478,8 +448,9 @@ function popIn(element){
 	}, 5);
 }
 
+//Grabs and sets up the pop up assets, including buttons
 function popIn2(pack){
-	let out = document.querySelector('.outer-pop');
+	let out = document.querySelector('.outer-pop');//dark background
 	let popBs = document.querySelectorAll('.smol-button');
 	popBs.forEach(b => {
 		b.addEventListener('click', () => {
@@ -492,6 +463,17 @@ function popIn2(pack){
 	})
 
 	popIn(out);
+}
+
+//Checks wether or not to call popIn2()
+function popIn3(pack){
+	if (settings.deviceType == 'default'){
+		popIn2(pack);
+	}
+	else {
+		swapFocus4(mid);
+		init(pack);
+	}
 }
 
 //Start game if url bar has ?mode='packname'

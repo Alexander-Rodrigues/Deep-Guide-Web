@@ -8,8 +8,10 @@ var dropDownMenu = document.querySelector('.dropdown-menu');
 var dropDownToggle = document.querySelector('.dropdown-toggle');
 
 var myChart;
+//stats for debugging
 //stats = JSON.parse('{"id":"DEBUG","totalRounds":90,"totalCorrectX":25,"totalCorrectY":43,"totalCorrects":14,"bestRound":7}');
 
+//If the URL bar has ?mode=name then the selected box will be that mode, given that it's valid
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
@@ -26,6 +28,7 @@ else {
 	dropDownToggle.innerHTML = Object.entries(soundPackSet)[0][1]
 }
 
+//for each soundpack an option is added to the dropdown menu
 Object.entries(soundPackSet).forEach(e => {
 	var c = document.createElement('a');
 	c.innerHTML = e[1];
@@ -41,6 +44,9 @@ Object.entries(soundPackSet).forEach(e => {
 	dropDownMenu.appendChild(c);
 });
 
+//displays all of the stats, checks if a single game has been played before
+//if a game was played hides the 'no games played' message
+//otherwise hides everything but the message
 function displayStats(){
 	console.log(stats[currentPack].totalRounds);
 	if (stats[currentPack].totalRounds > 0){
@@ -63,8 +69,6 @@ function displayStats(){
 	
 	}
 }
-
-
 
 //Draw graph, get's called by getMetric
 function parseProgression(labels, values) {
