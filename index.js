@@ -6,7 +6,7 @@ var startRedirect = document.querySelector('#start-redirect');
 var mid = document.querySelector('#mid');
 var end = document.querySelector('#end');
 
-var debug = true;
+const debug = false;
 
 //Start Screen
 var startBt = document.querySelector('#start-redirect-button');
@@ -103,6 +103,7 @@ var info = {
 }
 
 var hearts = 3;
+var maxRounds = 30;
 var state = 'start'
 
 var gameRound = 1;
@@ -219,6 +220,10 @@ function action(btn){
 		trueRound++;
 		play(Math.floor(Math.random() * 9));
 		rightButtonAnim(btn);
+		if (gameRound >= maxRounds) {
+			endGame();
+			statsH3.innerHTML = `Nice work! ${heartsMessage()} <br> Play again or check out your stats over <a href="stats.html?mode=${soundPack}" style="color: var(--mainColor);">here</a>.`;
+		}
 	}
 	else {
 		hearts--;
@@ -226,16 +231,7 @@ function action(btn){
 		wrongButtonAnim(btn);
 		//no hearts left
 		if (hearts <= 0) {
-			gameState = 'finished';
-			stop();
-			incMetric(soundPack, gameRound);
-			if (stats[soundPack].bestRound < gameRound) stats[soundPack].bestRound = gameRound;
-			saveStats();
-			pushProgress(stats.id, soundPack, gameRound);
-			statsH3.innerHTML = `Nice work! Try again or check out your stats over <a href="stats.html?mode=${soundPack}" style="color: var(--mainColor);">here</a>.`;
-			setTimeout(() => {
-				swapFocus4(end);
-			}, 300);
+			endGame();	
 		}
 		else {
 			trueRound++;
@@ -246,6 +242,38 @@ function action(btn){
 	rounds.forEach(e => {
 		e.innerHTML = 'Round ' + gameRound;
 	})
+}
+
+//Does all the things when the game ends.
+function endGame(){
+	gameState = 'finished';
+	stop();
+	incMetric(soundPack, gameRound);
+	if (stats[soundPack].bestRound < gameRound) stats[soundPack].bestRound = gameRound;
+	saveStats();
+	pushProgress(stats.id, soundPack, gameRound);
+	statsH3.innerHTML = `Nice work! Try again or check out your stats over <a href="stats.html?mode=${soundPack}" style="color: var(--mainColor);">here</a>.`;
+	setTimeout(() => {
+		swapFocus4(end);
+	}, 300);
+}
+
+function heartsMessage(){
+	switch (hearts) {
+		case 3:
+			return 'You made it to the end with all 3 hearts left!'
+			break;
+		case 2:
+			return 'You made it to the end with 2 hearts left!'
+			break;
+		case 1:
+			return 'You made it to the end with your last heart!'
+			break;
+	
+		default:
+			return 'I have no clue how you made it here!'
+			break;
+	}
 }
 
 //Get's called on correct button presses
@@ -345,8 +373,16 @@ function timeElapsed(){
 }
 
 //Draw graph, get's called by getMetric
-function parseMetrics(arr) {
-	arr = arr.slice(1,21);
+function parseMetrics(obj) {
+	let arr = []
+	console.log(obj);
+	for(let i = 1; i < 32; i++){
+		let o = obj[i];
+		arr.push((o != undefined) ? o : 0)
+		
+	}
+	console.log(arr);
+	//arr = arr.slice(1,31);
 	var max = arr.reduce((a,b) => {
 		return Math.max(a,b);
 	})
@@ -377,6 +413,9 @@ function parseMetrics(arr) {
 		data,
 		options: {
 			animation:false,
+			layout: {
+				padding: 25,
+			},
 			plugins: {
 				legend: {
 					display: false,
@@ -402,10 +441,16 @@ function parseMetrics(arr) {
 			scales: {
 				y: {
 					display: false,
-					min: 0,
+					min: -1,
 					font: {
 						size: 20,
 					},
+					ticks: {
+						backdropPadding: {
+							x: 10,
+							y: 4
+						}
+					}
 				},
 				x: {
 					display: true,
@@ -415,6 +460,11 @@ function parseMetrics(arr) {
 						autoSkip: false,
 						maxRotation: 0,
                     	minRotation: 0,
+						backdropPadding: {
+							x: 10,
+							y: 4
+						},
+						min: 0,
 					},
 				},
 			}
