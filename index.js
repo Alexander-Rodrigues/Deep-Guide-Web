@@ -375,13 +375,11 @@ function timeElapsed(){
 //Draw graph, get's called by getMetric
 function parseMetrics(obj) {
 	let arr = []
-	console.log(obj);
 	for(let i = 1; i < 32; i++){
 		let o = obj[i];
 		arr.push((o != undefined) ? o : 0)
 		
 	}
-	console.log(arr);
 	//arr = arr.slice(1,31);
 	var max = arr.reduce((a,b) => {
 		return Math.max(a,b);
