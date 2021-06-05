@@ -1,7 +1,7 @@
 const version = 23;
 const soundPackSet = {
 	'2_8_DU_phone3shorter_irc_1037': 'Easy',
-	'3_3_DU_phone3shorter_irc_1037': 'Hard',
+	//'3_3_DU_phone3shorter_irc_1037': 'Hard',
 	//'10_10_DU_phone3shorter_irc_1037': 'Kiss Your Ass Goodbye',
 }
 
