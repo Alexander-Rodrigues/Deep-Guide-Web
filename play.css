@@ -96,7 +96,7 @@ canvas{
 
 	position: absolute;
 	--my-width: 350px;
-	--my-height: 200px;
+	--my-height: 250px;
 
 
 	width:  var(--my-width);
