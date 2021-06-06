@@ -1,4 +1,4 @@
-const version = 23;
+const version = 25;
 const soundPackSet = {
 	'2_8_DU_phone3shorter_irc_1037': 'Play',
 	//'3_3_DU_phone3shorter_irc_1037': 'Hard',
