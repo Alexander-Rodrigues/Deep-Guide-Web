@@ -65,7 +65,7 @@ function displayStats(){
 		document.querySelectorAll('.stats').forEach(e => {
 			e.style.display = 'none';
 		})
-		document.querySelector('#empty').innerHTML = `Play atleast one game on ${soundPackSet[currentPack]} <a href="index.html?mode=${currentPack}" style="color: var(--mainColor)">here</a> to see your stats.`;
+		document.querySelector('#empty').innerHTML = `Play atleast one game on ${soundPackSet[currentPack]} mode <a href="index.html?mode=${currentPack}" style="color: var(--mainColor)">here</a> to see your stats.`;
 	
 	}
 }

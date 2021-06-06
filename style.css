@@ -251,7 +251,7 @@ body{
 }
 
 .game-icon{
-	height: 100px;
+	height: 160px;
 	outline-color: orange;
 	outline-style: solid;
 	outline-width: 0px;
@@ -261,5 +261,5 @@ body{
 	background-position-y: center;
 	background-size: contain;
 
-	margin: 3rem;
+	margin: 2rem;
 }

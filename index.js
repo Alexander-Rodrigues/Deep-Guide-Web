@@ -38,6 +38,8 @@ global.addEventListener('click', () => {
 	global.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
 });
 
+if (Object.keys(soundPackSet).length < 2) playBt.style.display = 'none';
+
 //Start at top of page
 scroll(0,0);
 
