@@ -34,7 +34,8 @@ var styleProperties = [
 	'--mainColor',
 	'--offColor',
 	'--contrast',
-	'--background'
+	'--background',
+	'--guy',
 ]
 
 var moon = document.querySelector('#toggle').firstElementChild;

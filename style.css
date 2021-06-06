@@ -3,16 +3,19 @@
 	--offColorLight: #9B50E2;
 	--backgroundLight: rgb(255, 255, 255);
 	--contrastLight:rgb(51, 51, 51);
+	--guyLight: url(imgs/svgs/guyDark.svg);
 	
 	--mainColorDark: #A25BE4;
 	--offColorDark: #AF73E8;
 	--backgroundDark: var(--contrastLight);
 	--contrastDark: var(--backgroundLight);
+	--guyDark: url(imgs/svgs/guyWhite.svg);
 
 	--mainColor: var(--mainColorLight);
 	--offColor: var(--offColorLight);
 	--background: var(--backgroundLight);
 	--contrast: var(--contrastLight);
+	--guy: var(--guyLight);
 }
 
 .navbar.navbar-dark{
@@ -266,4 +269,18 @@ body{
 	border-bottom: lightgray;
 	border-bottom-style: solid;
 	border-bottom-width: 2px;
+}
+
+.game-icon{
+	height: 100px;
+	outline-color: orange;
+	outline-style: solid;
+	outline-width: 0px;
+	background-image: var(--guy);
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position-y: center;
+	background-size: contain;
+
+	margin: 3rem;
 }
