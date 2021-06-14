@@ -106,6 +106,7 @@ function newStats(){
 			totalCorrectY: 0,
 			totalCorrects: 0,
 			bestRound: 0,
+			won: false,
 		}
 	});
 }
